@@ -18,27 +18,34 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingStart="20dp"
-            android:paddingTop="12dp"
+            android:paddingTop="18dp"
             android:paddingEnd="20dp"
-            android:paddingBottom="28dp">
+            android:paddingBottom="32dp">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                style="@style/Widget.LrcApp.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:minHeight="0dp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/headerCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_main_header_tonal"
                 android:orientation="vertical"
-                android:paddingStart="8dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="8dp"
-                android:paddingBottom="28dp">
+                android:paddingStart="4dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="26dp">
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/toolbar"
-                    style="@style/Widget.LrcApp.Toolbar"
+                <TextView
+                    android:id="@+id/tvHeaderTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="56dp" />
+                    android:text="@string/main_toolbar_title"
+                    android:textAppearance="@style/TextAppearance.LrcApp.DisplayLarge" />
 
                 <TextView
                     android:id="@+id/tvHeroSubtitle"
@@ -46,28 +53,75 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/main_toolbar_subtitle"
-                    android:textAppearance="@style/TextAppearance.LrcApp.HeadlineSmall" />
-                <TextView
-                    android:id="@+id/tvHeaderFormats"
+                    android:textAppearance="@style/TextAppearance.LrcApp.BodyLarge" />
+            </LinearLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/formatCard"
+                style="@style/Widget.LrcApp.Card.Feature"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/supported_formats"
-                    android:textAppearance="@style/TextAppearance.LrcApp.SupportingText" />
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="26dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/format_explainer_title"
+                                android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:text="@string/supported_formats"
+                                android:textAppearance="@style/TextAppearance.LrcApp.SupportingText" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/empty_state_icon_background"
+                            android:paddingStart="18dp"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="18dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/empty_state_badge"
+                            android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium"
+                            android:textColor="?attr/colorOnPrimaryContainer" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/storageCard"
                 style="@style/Widget.LrcApp.Card.Section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp">
+                android:layout_marginTop="18dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:padding="26dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -90,7 +144,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="5dp"
                                 android:text="@string/main_toolbar_subtitle"
                                 android:textAppearance="@style/TextAppearance.LrcApp.MetaLabel" />
                         </LinearLayout>
@@ -110,7 +164,7 @@
                         android:id="@+id/tvOutputDir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="24dp"
                         android:text="@string/storage_mode_default"
                         android:textAppearance="@style/TextAppearance.LrcApp.HeadlineSmall" />
 
@@ -151,7 +205,7 @@
                         style="@style/Widget.LrcApp.Panel.Row"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="22dp">
+                        android:layout_marginTop="24dp">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -229,7 +283,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="24dp">
+                    android:padding="26dp">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -253,7 +307,7 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
+                                android:layout_marginTop="5dp"
                                 android:text="@string/main_toolbar_subtitle"
                                 android:textAppearance="@style/TextAppearance.LrcApp.MetaLabel" />
                         </LinearLayout>
@@ -271,7 +325,7 @@
                         style="@style/Widget.LrcApp.Card.Warning"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
+                        android:layout_marginTop="20dp"
                         android:visibility="gone">
 
                         <LinearLayout
@@ -312,7 +366,7 @@
                         style="@style/Widget.LrcApp.Card.Emphasis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
+                        android:layout_marginTop="20dp"
                         android:visibility="gone">
 
                         <LinearLayout
@@ -382,57 +436,45 @@
                         android:id="@+id/emptyStateContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
-                        android:orientation="vertical">
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/bg_empty_state_panel"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:paddingStart="24dp"
+                        android:paddingTop="32dp"
+                        android:paddingEnd="24dp"
+                        android:paddingBottom="32dp">
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/emptyStateHeroCard"
-                            style="@style/Widget.LrcApp.Card.EmptyState"
+                        <TextView
+                            android:id="@+id/tvEmptyStateBadge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/empty_state_icon_background"
+                            android:paddingStart="18dp"
+                            android:paddingTop="10dp"
+                            android:paddingEnd="18dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/empty_state_badge"
+                            android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium"
+                            android:textColor="?attr/colorOnPrimaryContainer" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:text="@string/empty_state_title"
+                            android:textAppearance="@style/TextAppearance.LrcApp.PanelHeadline" />
+
+                        <TextView
+                            android:id="@+id/tvEmptyFormats"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_horizontal"
-                                android:orientation="vertical"
-                                android:paddingStart="24dp"
-                                android:paddingTop="30dp"
-                                android:paddingEnd="24dp"
-                                android:paddingBottom="30dp">
-
-                                <TextView
-                                    android:id="@+id/tvEmptyStateBadge"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@drawable/empty_state_icon_background"
-                                    android:paddingStart="18dp"
-                                    android:paddingTop="10dp"
-                                    android:paddingEnd="18dp"
-                                    android:paddingBottom="10dp"
-                                    android:text="@string/empty_state_badge"
-                                    android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium"
-                                    android:textColor="?attr/colorOnPrimaryContainer" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="20dp"
-                                    android:gravity="center"
-                                    android:text="@string/empty_state_title"
-                                    android:textAppearance="@style/TextAppearance.LrcApp.PanelHeadline" />
-
-                                <TextView
-                                    android:id="@+id/tvEmptyFormats"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="12dp"
-                                    android:gravity="center"
-                                    android:text="@string/supported_formats"
-                                    android:textAppearance="@style/TextAppearance.LrcApp.SupportingText"
-                                    android:textColor="?attr/colorOnPrimaryContainer" />
-                            </LinearLayout>
-                        </com.google.android.material.card.MaterialCardView>
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:gravity="center"
+                            android:text="@string/supported_formats"
+                            android:textAppearance="@style/TextAppearance.LrcApp.SupportingText"
+                            android:textColor="?attr/colorOnPrimaryContainer" />
                     </LinearLayout>
 
                     <com.google.android.material.card.MaterialCardView
@@ -440,7 +482,7 @@
                         style="@style/Widget.LrcApp.Card.Subsection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="18dp"
+                        android:layout_marginTop="20dp"
                         android:visibility="gone">
 
                         <androidx.recyclerview.widget.RecyclerView
@@ -449,7 +491,10 @@
                             android:layout_height="wrap_content"
                             android:clipToPadding="false"
                             android:nestedScrollingEnabled="false"
-                            android:padding="12dp" />
+                            android:paddingStart="12dp"
+                            android:paddingTop="12dp"
+                            android:paddingEnd="12dp"
+                            android:paddingBottom="0dp" />
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.button.MaterialButton
@@ -457,7 +502,7 @@
                         style="@style/Widget.LrcApp.Button.PrimaryCtaFilled"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="22dp"
                         android:text="@string/select_files" />
 
                     <LinearLayout

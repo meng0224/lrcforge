@@ -9,6 +9,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.DocumentsContract
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -1000,6 +1001,18 @@ class MainActivity : AppCompatActivity() {
         emptyStateContainer.visibility = if (files.isEmpty()) View.VISIBLE else View.GONE
         fileListCard.visibility = if (files.isEmpty()) View.GONE else View.VISIBLE
         recyclerView.visibility = if (files.isEmpty()) View.GONE else View.VISIBLE
+        updateRecyclerViewHeight()
+    }
+
+    private fun updateRecyclerViewHeight() {
+        val layoutParams = recyclerView.layoutParams
+        layoutParams.height = if (files.size >= 4) {
+            resources.getDimensionPixelSize(R.dimen.file_list_max_height)
+        } else {
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        }
+        recyclerView.layoutParams = layoutParams
+        recyclerView.isNestedScrollingEnabled = files.size >= 4
     }
 
     private fun updateActionButtons() {

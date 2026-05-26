@@ -12,6 +12,7 @@
     <style name="TextAppearance.LrcApp.DisplayLarge" parent="TextAppearance.Material3.DisplaySmall">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">2dp</item>
     </style>
 
     <style name="TextAppearance.LrcApp.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
@@ -41,6 +42,7 @@
 
     <style name="TextAppearance.LrcApp.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:lineSpacingExtra">2dp</item>
     </style>
 
     <style name="TextAppearance.LrcApp.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
@@ -81,7 +83,7 @@
     </style>
 
     <style name="Widget.LrcApp.Card" parent="Widget.Material3.CardView.Elevated">
-        <item name="cardCornerRadius">32dp</item>
+        <item name="cardCornerRadius">34dp</item>
         <item name="strokeColor">@color/md_theme_light_outlineVariant</item>
         <item name="strokeWidth">0dp</item>
         <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerLow</item>
@@ -89,7 +91,7 @@
     </style>
 
     <style name="Widget.LrcApp.Card.Section" parent="Widget.LrcApp.Card">
-        <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainer</item>
+        <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerLow</item>
     </style>
 
     <style name="Widget.LrcApp.Card.Feature" parent="Widget.LrcApp.Card">
@@ -97,13 +99,11 @@
     </style>
 
     <style name="Widget.LrcApp.Card.Action" parent="Widget.LrcApp.Card">
-        <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerLow</item>
+        <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainer</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.Hero" parent="Widget.LrcApp.Card.Feature" />
-
     <style name="Widget.LrcApp.Card.Subsection" parent="Widget.LrcApp.Card">
-        <item name="cardCornerRadius">26dp</item>
+        <item name="cardCornerRadius">28dp</item>
         <item name="cardBackgroundColor">@color/md_theme_light_list_surface</item>
     </style>
 
@@ -119,14 +119,8 @@
     </style>
 
     <style name="Widget.LrcApp.Card.ListItem" parent="Widget.LrcApp.Card">
-        <item name="cardCornerRadius">26dp</item>
-        <item name="cardBackgroundColor">@color/md_theme_light_list_surface</item>
-    </style>
-
-    <style name="Widget.LrcApp.Card.BottomSheetLikeAction" parent="Widget.LrcApp.Card">
-        <item name="android:background">@drawable/bg_bottom_action_surface</item>
-        <item name="cardBackgroundColor">@android:color/transparent</item>
-        <item name="cardElevation">8dp</item>
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerLow</item>
     </style>
 
     <style name="Widget.LrcApp.Card.Warning" parent="Widget.LrcApp.Card">
@@ -138,9 +132,9 @@
         <item name="android:gravity">center_vertical</item>
         <item name="android:minHeight">84dp</item>
         <item name="android:orientation">horizontal</item>
-        <item name="android:paddingStart">18dp</item>
+        <item name="android:paddingStart">20dp</item>
         <item name="android:paddingTop">18dp</item>
-        <item name="android:paddingEnd">16dp</item>
+        <item name="android:paddingEnd">18dp</item>
         <item name="android:paddingBottom">18dp</item>
         <item name="android:background">@drawable/bg_subsection_panel</item>
     </style>
@@ -148,11 +142,13 @@
     <style name="Widget.LrcApp.Button.Filled" parent="Widget.Material3.Button">
         <item name="cornerRadius">26dp</item>
         <item name="android:minHeight">58dp</item>
+        <item name="backgroundTint">?attr/colorPrimary</item>
+        <item name="android:textColor">?attr/colorOnPrimary</item>
         <item name="android:textAppearance">@style/TextAppearance.LrcApp.LabelLarge</item>
     </style>
 
     <style name="Widget.LrcApp.Button.PrimaryCtaFilled" parent="Widget.LrcApp.Button.Filled">
-        <item name="android:minHeight">62dp</item>
+        <item name="android:minHeight">64dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
         <item name="android:paddingLeft">24dp</item>
@@ -162,6 +158,8 @@
     <style name="Widget.LrcApp.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
         <item name="cornerRadius">22dp</item>
         <item name="android:minHeight">48dp</item>
+        <item name="backgroundTint">?attr/colorSecondaryContainer</item>
+        <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
         <item name="android:textAppearance">@style/TextAppearance.LrcApp.LabelLarge</item>
     </style>
 
@@ -179,6 +177,7 @@
     <style name="Widget.LrcApp.Button.Text" parent="Widget.Material3.Button.TextButton">
         <item name="cornerRadius">20dp</item>
         <item name="android:minHeight">44dp</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
         <item name="android:textAppearance">@style/TextAppearance.LrcApp.LabelLarge</item>
     </style>
 
