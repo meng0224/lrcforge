@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView"
-    style="@style/Widget.LrcApp.Card.ListItem"
+    style="@style/Widget.LrcForge.Card.ListItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="10dp">
@@ -24,7 +24,7 @@
 
             <TextView
                 android:id="@+id/tvFileFormat"
-                style="@style/TextAppearance.LrcApp.MetaLabel"
+                style="@style/TextAppearance.LrcForge.MetaLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/empty_state_icon_background"
@@ -42,7 +42,7 @@
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/tvStatus"
-                style="@style/Widget.LrcApp.Chip.Status"
+                style="@style/Widget.LrcForge.Chip.Status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/item_status_pending"
@@ -57,7 +57,7 @@
             android:layout_marginTop="14dp"
             android:maxLines="2"
             android:text="@string/item_file_name_placeholder"
-            android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium" />
+            android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/item_file_size_placeholder"
-                android:textAppearance="@style/TextAppearance.LrcApp.MetaLabel" />
+                android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel" />
         </LinearLayout>
 
         <TextView
@@ -82,7 +82,7 @@
             android:layout_marginTop="12dp"
             android:maxLines="2"
             android:text="@string/item_output_placeholder"
-            android:textAppearance="@style/TextAppearance.LrcApp.SupportingText"
+            android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
             android:visibility="gone" />
 
         <TextView
@@ -92,7 +92,7 @@
             android:layout_marginTop="12dp"
             android:maxLines="3"
             android:text="@string/item_error_placeholder"
-            android:textAppearance="@style/TextAppearance.LrcApp.SupportingText"
+            android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
             android:textColor="?attr/colorError"
             android:visibility="gone" />
 

@@ -24,7 +24,7 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
-                style="@style/Widget.LrcApp.Toolbar"
+                style="@style/Widget.LrcForge.Toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:minHeight="0dp"
@@ -45,7 +45,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/main_toolbar_title"
-                    android:textAppearance="@style/TextAppearance.LrcApp.DisplayLarge" />
+                    android:textAppearance="@style/TextAppearance.LrcForge.DisplayLarge" />
 
                 <TextView
                     android:id="@+id/tvHeroSubtitle"
@@ -53,12 +53,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/main_toolbar_subtitle"
-                    android:textAppearance="@style/TextAppearance.LrcApp.BodyLarge" />
+                    android:textAppearance="@style/TextAppearance.LrcForge.BodyLarge" />
             </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/formatCard"
-                style="@style/Widget.LrcApp.Card.Feature"
+                style="@style/Widget.LrcForge.Card.Feature"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -84,14 +84,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/format_explainer_title"
-                                android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
                                 android:text="@string/supported_formats"
-                                android:textAppearance="@style/TextAppearance.LrcApp.SupportingText" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
                         </LinearLayout>
 
                         <TextView
@@ -103,7 +103,7 @@
                             android:paddingEnd="18dp"
                             android:paddingBottom="10dp"
                             android:text="@string/empty_state_badge"
-                            android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium"
+                            android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
                             android:textColor="?attr/colorOnPrimaryContainer" />
                     </LinearLayout>
 
@@ -112,7 +112,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/storageCard"
-                style="@style/Widget.LrcApp.Card.Section"
+                style="@style/Widget.LrcForge.Card.Section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp">
@@ -139,19 +139,19 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/storage_section_title"
-                                android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/main_toolbar_subtitle"
-                                android:textAppearance="@style/TextAppearance.LrcApp.MetaLabel" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel" />
                         </LinearLayout>
 
                         <com.google.android.material.chip.Chip
                             android:id="@+id/tvStorageModeChip"
-                            style="@style/Widget.LrcApp.Chip.Status"
+                            style="@style/Widget.LrcForge.Chip.Status"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/storage_mode_chip_default"
@@ -166,7 +166,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp"
                         android:text="@string/storage_mode_default"
-                        android:textAppearance="@style/TextAppearance.LrcApp.HeadlineSmall" />
+                        android:textAppearance="@style/TextAppearance.LrcForge.HeadlineSmall" />
 
                     <TextView
                         android:id="@+id/tvOutputDirHint"
@@ -174,7 +174,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="/storage/emulated/0/Download"
-                        android:textAppearance="@style/TextAppearance.LrcApp.SupportingText" />
+                        android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
 
                     <LinearLayout
                         android:id="@+id/layoutCustomOutputActions"
@@ -185,7 +185,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnSelectOutputDir"
-                            style="@style/Widget.LrcApp.Button.SecondaryTonal"
+                            style="@style/Widget.LrcForge.Button.SecondaryTonal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -194,7 +194,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnClearOutputDir"
-                            style="@style/Widget.LrcApp.Button.InlineText"
+                            style="@style/Widget.LrcForge.Button.InlineText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/clear_directory" />
@@ -202,7 +202,7 @@
 
                     <LinearLayout
                         android:id="@+id/sourceOutputPanel"
-                        style="@style/Widget.LrcApp.Panel.Row"
+                        style="@style/Widget.LrcForge.Panel.Row"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="24dp">
@@ -217,7 +217,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/storage_mode_source"
-                                android:textAppearance="@style/TextAppearance.LrcApp.TitleSmall"
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleSmall"
                                 android:textColor="?attr/colorOnSurface" />
 
                             <TextView
@@ -225,19 +225,19 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
                                 android:text="@string/storage_source_hint"
-                                android:textAppearance="@style/TextAppearance.LrcApp.SupportingText" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
                         </LinearLayout>
 
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchOutputToSourceDirectory"
-                            style="@style/Widget.LrcApp.Switch"
+                            style="@style/Widget.LrcForge.Switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/recursiveImportPanel"
-                        style="@style/Widget.LrcApp.Panel.Row"
+                        style="@style/Widget.LrcForge.Panel.Row"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="12dp">
@@ -252,7 +252,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/recursive_import_title"
-                                android:textAppearance="@style/TextAppearance.LrcApp.TitleSmall"
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleSmall"
                                 android:textColor="?attr/colorOnSurface" />
 
                             <TextView
@@ -260,12 +260,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="6dp"
                                 android:text="@string/recursive_import_hint"
-                                android:textAppearance="@style/TextAppearance.LrcApp.SupportingText" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
                         </LinearLayout>
 
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchRecursiveImport"
-                            style="@style/Widget.LrcApp.Switch"
+                            style="@style/Widget.LrcForge.Switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                     </LinearLayout>
@@ -274,7 +274,7 @@
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/actionCard"
-                style="@style/Widget.LrcApp.Card.Action"
+                style="@style/Widget.LrcForge.Card.Action"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp">
@@ -302,14 +302,14 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/file_list_title"
-                                android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/main_toolbar_subtitle"
-                                android:textAppearance="@style/TextAppearance.LrcApp.MetaLabel" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel" />
                         </LinearLayout>
 
                         <TextView
@@ -317,12 +317,12 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textAppearance="@style/TextAppearance.LrcApp.LabelMedium" />
+                            android:textAppearance="@style/TextAppearance.LrcForge.LabelMedium" />
                     </LinearLayout>
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/authBannerCard"
-                        style="@style/Widget.LrcApp.Card.Warning"
+                        style="@style/Widget.LrcForge.Card.Warning"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -339,7 +339,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/auth_banner_title"
-                                android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium"
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
                                 android:textColor="@color/warning_onContainer" />
 
                             <TextView
@@ -348,12 +348,12 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
                                 android:text="@string/auth_banner_message"
-                                android:textAppearance="@style/TextAppearance.LrcApp.BodyMedium"
+                                android:textAppearance="@style/TextAppearance.LrcForge.BodyMedium"
                                 android:textColor="@color/warning_onContainer" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnAuthorizeSourceDir"
-                                style="@style/Widget.LrcApp.Button.Filled"
+                                style="@style/Widget.LrcForge.Button.Filled"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="16dp"
@@ -363,7 +363,7 @@
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/progressCard"
-                        style="@style/Widget.LrcApp.Card.Emphasis"
+                        style="@style/Widget.LrcForge.Card.Emphasis"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -391,14 +391,14 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:text="@string/progress_section_title"
-                                        android:textAppearance="@style/TextAppearance.LrcApp.PanelHeadline" />
+                                        android:textAppearance="@style/TextAppearance.LrcForge.PanelHeadline" />
 
                                     <TextView
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="4dp"
                                         android:text="@string/progress_placeholder"
-                                        android:textAppearance="@style/TextAppearance.LrcApp.MetaLabel"
+                                        android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel"
                                         android:textColor="?attr/colorOnPrimaryContainer" />
                                 </LinearLayout>
 
@@ -407,7 +407,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0/0"
-                                    android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium"
+                                    android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
                                     android:textColor="?attr/colorOnPrimaryContainer" />
                             </LinearLayout>
 
@@ -427,7 +427,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
                                 android:text="@string/progress_placeholder"
-                                android:textAppearance="@style/TextAppearance.LrcApp.SupportingText"
+                                android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
                                 android:textColor="?attr/colorOnPrimaryContainer" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
@@ -455,7 +455,7 @@
                             android:paddingEnd="18dp"
                             android:paddingBottom="10dp"
                             android:text="@string/empty_state_badge"
-                            android:textAppearance="@style/TextAppearance.LrcApp.TitleMedium"
+                            android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
                             android:textColor="?attr/colorOnPrimaryContainer" />
 
                         <TextView
@@ -464,7 +464,7 @@
                             android:layout_marginTop="20dp"
                             android:gravity="center"
                             android:text="@string/empty_state_title"
-                            android:textAppearance="@style/TextAppearance.LrcApp.PanelHeadline" />
+                            android:textAppearance="@style/TextAppearance.LrcForge.PanelHeadline" />
 
                         <TextView
                             android:id="@+id/tvEmptyFormats"
@@ -473,13 +473,13 @@
                             android:layout_marginTop="12dp"
                             android:gravity="center"
                             android:text="@string/supported_formats"
-                            android:textAppearance="@style/TextAppearance.LrcApp.SupportingText"
+                            android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
                             android:textColor="?attr/colorOnPrimaryContainer" />
                     </LinearLayout>
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/fileListCard"
-                        style="@style/Widget.LrcApp.Card.Subsection"
+                        style="@style/Widget.LrcForge.Card.Subsection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
@@ -499,7 +499,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnConvert"
-                        style="@style/Widget.LrcApp.Button.PrimaryCtaFilled"
+                        style="@style/Widget.LrcForge.Button.PrimaryCtaFilled"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="22dp"
@@ -515,7 +515,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnSelectFiles"
-                            style="@style/Widget.LrcApp.Button.SecondaryTonal"
+                            style="@style/Widget.LrcForge.Button.SecondaryTonal"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="10dp"
@@ -524,7 +524,7 @@
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnClearFileList"
-                            style="@style/Widget.LrcApp.Button.InlineText"
+                            style="@style/Widget.LrcForge.Button.InlineText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/clear_file_list" />

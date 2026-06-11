@@ -30,7 +30,7 @@
 
 ## 2. Environment
 
-- Repo: `D:\Git\lrcapp`
+- Repo: `D:\Git\lrcforge`
 - Date:
 - Tester:
 - Device / Emulator:
@@ -43,7 +43,7 @@
 
 - Command:
   - `set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-  - `set GRADLE_USER_HOME=D:\Git\lrcapp\.gradle-user`
+  - `set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
   - `gradlew.bat testDebugUnitTest`
 - Current status: `BLOCKED`
 - Blocking reason:
@@ -114,3 +114,4 @@
 - If Gradle distribution is pre-provisioned, rerun unit tests and record result here
 - Run `connectedDebugAndroidTest` on available emulator/device
 - Update `Status` and checklist after each validation round
+

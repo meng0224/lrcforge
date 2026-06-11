@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.lrcapp'
+    namespace 'com.example.lrcforge'
     compileSdk 34
 
     defaultConfig {
-        applicationId "com.example.lrcapp"
+        applicationId "com.example.lrcforge"
         minSdk 24
         targetSdk 34
         versionCode 1

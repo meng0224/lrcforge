@@ -14,7 +14,7 @@ For any home screen / layout / theme / style / visual refactor task:
 
 ### Home screen target structure
 
-Unless explicitly told otherwise, the LrcApp home screen should follow this structure:
+Unless explicitly told otherwise, the LrcForge home screen should follow this structure:
 
 1. plain top header:
    - app title
@@ -79,7 +79,7 @@ A UI task is not done unless:
 
 ## 用途
 
-- 本文件提供 `LrcApp` 專案專用的 agent 工作指引。
+- 本文件提供 `LrcForge` 專案專用的 agent 工作指引。
 - 若本文件與一般 Android 慣例衝突，以本文件為優先。
 - 作用範圍：整個 repository。
 
@@ -87,7 +87,7 @@ A UI task is not done unless:
 
 - 平台：使用 Kotlin 與 Gradle Groovy DSL 的 Android App。
 - App module：`app`。
-- 套件根路徑：`com.example.lrcapp`。
+- 套件根路徑：`com.example.lrcforge`。
 - UI 技術：Android Views + Material Components + RecyclerView。
 - 非同步工作：Kotlin coroutines 搭配 `lifecycleScope`。
 - 測試：JUnit4 單元測試與 AndroidX instrumentation tests。
@@ -102,9 +102,9 @@ A UI task is not done unless:
 
 ## 重要路徑
 
-- App 原始碼：`app/src/main/java/com/example/lrcapp`
-- 單元測試：`app/src/test/java/com/example/lrcapp`
-- Instrumentation 測試：`app/src/androidTest/java/com/example/lrcapp`
+- App 原始碼：`app/src/main/java/com/example/lrcforge`
+- 單元測試：`app/src/test/java/com/example/lrcforge`
+- Instrumentation 測試：`app/src/androidTest/java/com/example/lrcforge`
 - 資源檔：`app/src/main/res`
 - Manifest：`app/src/main/AndroidManifest.xml`
 - Module build 檔：`app/build.gradle`
@@ -118,7 +118,7 @@ A UI task is not done unless:
 - Repo 文件提到，某些環境無法下載這個 distribution。
 - Windows 環境下，專案文件另外建議設定：
 - `JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-- `GRADLE_USER_HOME=D:\Git\lrcapp\.gradle-user`
+- `GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
 - 在此 workspace 中，`JAVA_HOME` 可能不存在；若未設定，Gradle 指令預期會失敗。
 
 ## 建置指令
@@ -148,15 +148,15 @@ A UI task is not done unless:
 ## 單一測試指令
 
 - 單一 unit test 類別：
-- `./gradlew.bat testDebugUnitTest --tests "com.example.lrcapp.converter.SubtitleConverterTest"`
+- `./gradlew.bat testDebugUnitTest --tests "com.example.lrcforge.converter.SubtitleConverterTest"`
 - 單一 unit test 方法：
-- `./gradlew.bat testDebugUnitTest --tests "com.example.lrcapp.converter.SubtitleConverterTest.assDialogueWithCommaKeepsFullText"`
+- `./gradlew.bat testDebugUnitTest --tests "com.example.lrcforge.converter.SubtitleConverterTest.assDialogueWithCommaKeepsFullText"`
 - 另一個 unit test 類別範例：
-- `./gradlew.bat testDebugUnitTest --tests "com.example.lrcapp.util.FileValidatorTest"`
+- `./gradlew.bat testDebugUnitTest --tests "com.example.lrcforge.util.FileValidatorTest"`
 - 單一 instrumentation test 類別：
-- `./gradlew.bat connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.lrcapp.MainActivityInstrumentationTest`
+- `./gradlew.bat connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.lrcforge.MainActivityInstrumentationTest`
 - 單一 instrumentation test 方法：
-- `./gradlew.bat connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.lrcapp.MainActivityInstrumentationTest#coldLaunchShowsOptimizedEmptyState`
+- `./gradlew.bat connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=com.example.lrcforge.MainActivityInstrumentationTest#coldLaunchShowsOptimizedEmptyState`
 - 在 macOS/Linux 上，請把 `gradlew.bat` 改成 `./gradlew`。
 
 ## 建議的 Agent 工作流程
@@ -251,3 +251,5 @@ A UI task is not done unless:
 - 新增邏輯 helper 時，放到最接近的既有 feature package。
 - 若修改字串或行為，應在同一個變更中更新受影響測試。
 - 若因 Gradle、網路或模擬器限制而無法驗證，請在回覆中明確說明阻塞點。
+
+

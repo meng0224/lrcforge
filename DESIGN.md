@@ -1,10 +1,10 @@
 # DESIGN.md
 
-## Reference-specific target for LrcApp home screen
+## Reference-specific target for LrcForge home screen
 
-## Reference-specific target for LrcApp home screen
+## Reference-specific target for LrcForge home screen
 
-When a reference image is provided for the LrcApp home screen, prefer matching that image’s layout language and color composition over generic Material 3 defaults.
+When a reference image is provided for the LrcForge home screen, prefer matching that image’s layout language and color composition over generic Material 3 defaults.
 
 ### Overall composition
 
@@ -91,9 +91,9 @@ The primary CTA should:
 
 ## Purpose
 
-This file defines the visual design system for **LrcApp**.
+This file defines the visual design system for **LrcForge**.
 
-LrcApp is an Android utility app for batch subtitle conversion to LRC.
+LrcForge is an Android utility app for batch subtitle conversion to LRC.
 This document exists so coding agents can make UI changes that stay visually consistent with the product direction.
 
 This is a **visual design specification**, not an architecture document.
@@ -102,7 +102,7 @@ This is a **visual design specification**, not an architecture document.
 
 ## Product Intent
 
-LrcApp should feel:
+LrcForge should feel:
 
 - clean
 - soft
@@ -289,7 +289,7 @@ Typography should feel:
 
 #### Display / Screen Title
 Used for:
-- page titles like “LrcApp”
+- page titles like “LrcForge”
 - major top-level headings
 
 Should be:
@@ -582,7 +582,7 @@ Use the following reference style direction:
 - minimal borders
 - more “designed panel” than “utility form”
 
-For LrcApp specifically:
+For LrcForge specifically:
 - the current functionality stays the same
 - the visual target is closer to a polished Material You tool app
 - the design should feel intentional enough that screenshots look cohesive without additional explanation

@@ -1,88 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="TextAppearance.LrcApp.ToolbarTitle" parent="TextAppearance.Material3.HeadlineSmall">
+    <style name="TextAppearance.LrcForge.ToolbarTitle" parent="TextAppearance.Material3.HeadlineSmall">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.ToolbarSubtitle" parent="TextAppearance.Material3.BodyMedium">
+    <style name="TextAppearance.LrcForge.ToolbarSubtitle" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.DisplayLarge" parent="TextAppearance.Material3.DisplaySmall">
+    <style name="TextAppearance.LrcForge.DisplayLarge" parent="TextAppearance.Material3.DisplaySmall">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textStyle">bold</item>
         <item name="android:lineSpacingExtra">2dp</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
+    <style name="TextAppearance.LrcForge.HeadlineSmall" parent="TextAppearance.Material3.HeadlineSmall">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.PanelHeadline" parent="TextAppearance.Material3.HeadlineSmall">
+    <style name="TextAppearance.LrcForge.PanelHeadline" parent="TextAppearance.Material3.HeadlineSmall">
         <item name="android:textColor">?attr/colorOnPrimaryContainer</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
+    <style name="TextAppearance.LrcForge.TitleSmall" parent="TextAppearance.Material3.TitleSmall">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
+    <style name="TextAppearance.LrcForge.TitleLarge" parent="TextAppearance.Material3.TitleLarge">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
+    <style name="TextAppearance.LrcForge.TitleMedium" parent="TextAppearance.Material3.TitleMedium">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
+    <style name="TextAppearance.LrcForge.BodyLarge" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:lineSpacingExtra">2dp</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
+    <style name="TextAppearance.LrcForge.BodyMedium" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.SupportingText" parent="TextAppearance.Material3.BodyMedium">
+    <style name="TextAppearance.LrcForge.SupportingText" parent="TextAppearance.Material3.BodyMedium">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.BodySmall" parent="TextAppearance.Material3.BodySmall">
+    <style name="TextAppearance.LrcForge.BodySmall" parent="TextAppearance.Material3.BodySmall">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
+    <style name="TextAppearance.LrcForge.LabelLarge" parent="TextAppearance.Material3.LabelLarge">
         <item name="android:textColor">?attr/colorOnSurface</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
+    <style name="TextAppearance.LrcForge.LabelMedium" parent="TextAppearance.Material3.LabelMedium">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="TextAppearance.LrcApp.MetaLabel" parent="TextAppearance.Material3.LabelMedium">
+    <style name="TextAppearance.LrcForge.MetaLabel" parent="TextAppearance.Material3.LabelMedium">
         <item name="android:textColor">?attr/colorOnSurfaceVariant</item>
         <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="Widget.LrcApp.Toolbar" parent="Widget.Material3.Toolbar">
+    <style name="Widget.LrcForge.Toolbar" parent="Widget.Material3.Toolbar">
         <item name="android:background">@android:color/transparent</item>
         <item name="titleCentered">false</item>
-        <item name="titleTextAppearance">@style/TextAppearance.LrcApp.ToolbarTitle</item>
-        <item name="subtitleTextAppearance">@style/TextAppearance.LrcApp.ToolbarSubtitle</item>
+        <item name="titleTextAppearance">@style/TextAppearance.LrcForge.ToolbarTitle</item>
+        <item name="subtitleTextAppearance">@style/TextAppearance.LrcForge.ToolbarSubtitle</item>
         <item name="navigationIconTint">?attr/colorOnSurface</item>
         <item name="titleTextColor">?attr/colorOnSurface</item>
         <item name="subtitleTextColor">?attr/colorOnSurfaceVariant</item>
     </style>
 
-    <style name="Widget.LrcApp.Card" parent="Widget.Material3.CardView.Elevated">
+    <style name="Widget.LrcForge.Card" parent="Widget.Material3.CardView.Elevated">
         <item name="cardCornerRadius">34dp</item>
         <item name="strokeColor">@color/md_theme_light_outlineVariant</item>
         <item name="strokeWidth">0dp</item>
@@ -90,45 +90,45 @@
         <item name="cardElevation">0dp</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.Section" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.Section" parent="Widget.LrcForge.Card">
         <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerLow</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.Feature" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.Feature" parent="Widget.LrcForge.Card">
         <item name="cardBackgroundColor">@color/md_theme_light_primaryContainer</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.Action" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.Action" parent="Widget.LrcForge.Card">
         <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainer</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.Subsection" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.Subsection" parent="Widget.LrcForge.Card">
         <item name="cardCornerRadius">28dp</item>
         <item name="cardBackgroundColor">@color/md_theme_light_list_surface</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.Subtle" parent="Widget.LrcApp.Card.Subsection" />
+    <style name="Widget.LrcForge.Card.Subtle" parent="Widget.LrcForge.Card.Subsection" />
 
-    <style name="Widget.LrcApp.Card.Emphasis" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.Emphasis" parent="Widget.LrcForge.Card">
         <item name="cardBackgroundColor">@color/md_theme_light_primaryContainer</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.EmptyState" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.EmptyState" parent="Widget.LrcForge.Card">
         <item name="android:background">@drawable/bg_empty_state_panel</item>
         <item name="cardBackgroundColor">@android:color/transparent</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.ListItem" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.ListItem" parent="Widget.LrcForge.Card">
         <item name="cardCornerRadius">24dp</item>
         <item name="cardBackgroundColor">@color/md_theme_light_surfaceContainerLow</item>
     </style>
 
-    <style name="Widget.LrcApp.Card.Warning" parent="Widget.LrcApp.Card">
+    <style name="Widget.LrcForge.Card.Warning" parent="Widget.LrcForge.Card">
         <item name="cardCornerRadius">24dp</item>
         <item name="cardBackgroundColor">@color/warning_container</item>
     </style>
 
-    <style name="Widget.LrcApp.Panel.Row" parent="">
+    <style name="Widget.LrcForge.Panel.Row" parent="">
         <item name="android:gravity">center_vertical</item>
         <item name="android:minHeight">84dp</item>
         <item name="android:orientation">horizontal</item>
@@ -139,15 +139,15 @@
         <item name="android:background">@drawable/bg_subsection_panel</item>
     </style>
 
-    <style name="Widget.LrcApp.Button.Filled" parent="Widget.Material3.Button">
+    <style name="Widget.LrcForge.Button.Filled" parent="Widget.Material3.Button">
         <item name="cornerRadius">26dp</item>
         <item name="android:minHeight">58dp</item>
         <item name="backgroundTint">?attr/colorPrimary</item>
         <item name="android:textColor">?attr/colorOnPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.LrcApp.LabelLarge</item>
+        <item name="android:textAppearance">@style/TextAppearance.LrcForge.LabelLarge</item>
     </style>
 
-    <style name="Widget.LrcApp.Button.PrimaryCtaFilled" parent="Widget.LrcApp.Button.Filled">
+    <style name="Widget.LrcForge.Button.PrimaryCtaFilled" parent="Widget.LrcForge.Button.Filled">
         <item name="android:minHeight">64dp</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
@@ -155,46 +155,46 @@
         <item name="android:paddingRight">24dp</item>
     </style>
 
-    <style name="Widget.LrcApp.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+    <style name="Widget.LrcForge.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
         <item name="cornerRadius">22dp</item>
         <item name="android:minHeight">48dp</item>
         <item name="backgroundTint">?attr/colorSecondaryContainer</item>
         <item name="android:textColor">?attr/colorOnSecondaryContainer</item>
-        <item name="android:textAppearance">@style/TextAppearance.LrcApp.LabelLarge</item>
+        <item name="android:textAppearance">@style/TextAppearance.LrcForge.LabelLarge</item>
     </style>
 
-    <style name="Widget.LrcApp.Button.SecondaryTonal" parent="Widget.LrcApp.Button.Tonal">
+    <style name="Widget.LrcForge.Button.SecondaryTonal" parent="Widget.LrcForge.Button.Tonal">
         <item name="android:minHeight">50dp</item>
     </style>
 
-    <style name="Widget.LrcApp.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
+    <style name="Widget.LrcForge.Button.Outlined" parent="Widget.Material3.Button.OutlinedButton">
         <item name="cornerRadius">22dp</item>
         <item name="android:minHeight">48dp</item>
         <item name="strokeColor">@color/md_theme_light_outlineVariant</item>
-        <item name="android:textAppearance">@style/TextAppearance.LrcApp.LabelLarge</item>
+        <item name="android:textAppearance">@style/TextAppearance.LrcForge.LabelLarge</item>
     </style>
 
-    <style name="Widget.LrcApp.Button.Text" parent="Widget.Material3.Button.TextButton">
+    <style name="Widget.LrcForge.Button.Text" parent="Widget.Material3.Button.TextButton">
         <item name="cornerRadius">20dp</item>
         <item name="android:minHeight">44dp</item>
         <item name="android:textColor">?attr/colorPrimary</item>
-        <item name="android:textAppearance">@style/TextAppearance.LrcApp.LabelLarge</item>
+        <item name="android:textAppearance">@style/TextAppearance.LrcForge.LabelLarge</item>
     </style>
 
-    <style name="Widget.LrcApp.Button.InlineText" parent="Widget.LrcApp.Button.Text">
+    <style name="Widget.LrcForge.Button.InlineText" parent="Widget.LrcForge.Button.Text">
         <item name="android:minHeight">40dp</item>
     </style>
 
-    <style name="Widget.LrcApp.Chip.Assist" parent="Widget.Material3.Chip.Assist">
+    <style name="Widget.LrcForge.Chip.Assist" parent="Widget.Material3.Chip.Assist">
         <item name="chipCornerRadius">999dp</item>
         <item name="chipStrokeWidth">0dp</item>
         <item name="android:minHeight">30dp</item>
         <item name="ensureMinTouchTargetSize">false</item>
     </style>
 
-    <style name="Widget.LrcApp.Chip.Status" parent="Widget.LrcApp.Chip.Assist" />
+    <style name="Widget.LrcForge.Chip.Status" parent="Widget.LrcForge.Chip.Assist" />
 
-    <style name="Widget.LrcApp.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+    <style name="Widget.LrcForge.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
         <item name="useMaterialThemeColors">true</item>
     </style>
 </resources>

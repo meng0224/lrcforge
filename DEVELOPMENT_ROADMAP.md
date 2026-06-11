@@ -1,6 +1,6 @@
 # Development Roadmap
 
-本文件是 LrcApp 的唯一主路線圖，負責回答三件事：
+本文件是 LrcForge 的唯一主路線圖，負責回答三件事：
 - 做了什麼
 - 現在在哪
 - 接下來做什麼

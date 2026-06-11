@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="Theme.LrcApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.LrcForge" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -30,18 +30,18 @@
         <item name="android:windowBackground">@color/md_theme_light_background</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="toolbarStyle">@style/Widget.LrcApp.Toolbar</item>
-        <item name="materialCardViewStyle">@style/Widget.LrcApp.Card</item>
-        <item name="materialButtonStyle">@style/Widget.LrcApp.Button.Filled</item>
-        <item name="textAppearanceDisplaySmall">@style/TextAppearance.LrcApp.DisplayLarge</item>
-        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.LrcApp.HeadlineSmall</item>
-        <item name="textAppearanceTitleSmall">@style/TextAppearance.LrcApp.TitleSmall</item>
-        <item name="textAppearanceTitleLarge">@style/TextAppearance.LrcApp.TitleLarge</item>
-        <item name="textAppearanceTitleMedium">@style/TextAppearance.LrcApp.TitleMedium</item>
-        <item name="textAppearanceBodyLarge">@style/TextAppearance.LrcApp.BodyLarge</item>
-        <item name="textAppearanceBodyMedium">@style/TextAppearance.LrcApp.BodyMedium</item>
-        <item name="textAppearanceBodySmall">@style/TextAppearance.LrcApp.BodySmall</item>
-        <item name="textAppearanceLabelLarge">@style/TextAppearance.LrcApp.LabelLarge</item>
-        <item name="textAppearanceLabelMedium">@style/TextAppearance.LrcApp.LabelMedium</item>
+        <item name="toolbarStyle">@style/Widget.LrcForge.Toolbar</item>
+        <item name="materialCardViewStyle">@style/Widget.LrcForge.Card</item>
+        <item name="materialButtonStyle">@style/Widget.LrcForge.Button.Filled</item>
+        <item name="textAppearanceDisplaySmall">@style/TextAppearance.LrcForge.DisplayLarge</item>
+        <item name="textAppearanceHeadlineSmall">@style/TextAppearance.LrcForge.HeadlineSmall</item>
+        <item name="textAppearanceTitleSmall">@style/TextAppearance.LrcForge.TitleSmall</item>
+        <item name="textAppearanceTitleLarge">@style/TextAppearance.LrcForge.TitleLarge</item>
+        <item name="textAppearanceTitleMedium">@style/TextAppearance.LrcForge.TitleMedium</item>
+        <item name="textAppearanceBodyLarge">@style/TextAppearance.LrcForge.BodyLarge</item>
+        <item name="textAppearanceBodyMedium">@style/TextAppearance.LrcForge.BodyMedium</item>
+        <item name="textAppearanceBodySmall">@style/TextAppearance.LrcForge.BodySmall</item>
+        <item name="textAppearanceLabelLarge">@style/TextAppearance.LrcForge.LabelLarge</item>
+        <item name="textAppearanceLabelMedium">@style/TextAppearance.LrcForge.LabelMedium</item>
     </style>
 </resources>

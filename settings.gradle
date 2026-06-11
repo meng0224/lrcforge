@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LrcApp"
+rootProject.name = "LrcForge"
 include ':app'

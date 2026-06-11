@@ -3,15 +3,15 @@
 本文件依據目前專案中的實際程式碼整理，重點是描述「功能如何被觸發、如何流經主要元件、如何落地到儲存層，以及結果如何回到 UI」。  
 主要依據如下：
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
-- `app/src/main/java/com/example/lrcapp/converter/SubtitleConverter.kt`
-- `app/src/main/java/com/example/lrcapp/util/*`
-- `app/src/main/java/com/example/lrcapp/adapter/SubtitleFileAdapter.kt`
-- `app/src/main/java/com/example/lrcapp/model/*`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/converter/SubtitleConverter.kt`
+- `app/src/main/java/com/example/lrcforge/util/*`
+- `app/src/main/java/com/example/lrcforge/adapter/SubtitleFileAdapter.kt`
+- `app/src/main/java/com/example/lrcforge/model/*`
 - `app/src/main/res/layout/activity_main.xml`
 - `app/src/main/res/layout/item_subtitle_file.xml`
 - `app/src/main/AndroidManifest.xml`
-- `app/src/test/java/com/example/lrcapp/*` 中與邏輯行為直接相關的測試
+- `app/src/test/java/com/example/lrcforge/*` 中與邏輯行為直接相關的測試
 
 本文件明確區分：
 
@@ -91,16 +91,16 @@
 
 | 功能名稱 | 入口頁/觸發點 | 主要 UI 元件 | 主要邏輯類別 | 主要資料來源 | 相關檔案路徑 |
 | --- | --- | --- | --- | --- | --- |
-| App 啟動與設定載入 | App 冷啟動 | `MainActivity`、`toolbar`、`tvOutputDir` | `MainActivity`、`SettingsManager` | `SharedPreferences` | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/java/com/example/lrcapp/util/SettingsManager.kt` |
-| 輸出模式切換與互斥控制 | 「輸出到原文件目錄」開關 | `switchOutputToSourceDirectory`、`btnSelectOutputDir`、`btnClearOutputDir` | `MainActivity`、`OutputSettingsPolicy` | `AppSettings`、`SharedPreferences` | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/java/com/example/lrcapp/util/OutputSettingsPolicy.kt` |
-| 自訂輸出目錄選擇與清除 | 點「選擇目錄」/「清除目錄」 | `btnSelectOutputDir`、`btnClearOutputDir`、`tvOutputDir` | `MainActivity`、`SettingsManager` | SAF tree URI、`SharedPreferences` | `app/src/main/java/com/example/lrcapp/MainActivity.kt` |
-| 字幕檔選取與權限分流 | 點「選擇文件」 | `btnSelectFiles` | `MainActivity` | `ActivityResultContracts.OpenMultipleDocuments`、Android 權限系統 | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/AndroidManifest.xml` |
-| 檔案驗證與列表建立/合併 | 選檔回傳後 | `RecyclerView` | `MainActivity`、`FileValidator`、`FileSelectionPolicy` | `Uri`、`OpenableColumns`、`DocumentsContract` | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/java/com/example/lrcapp/util/FileValidator.kt`、`app/src/main/java/com/example/lrcapp/util/FileSelectionPolicy.kt` |
-| 批次字幕轉 LRC | 點「開始轉換」 | `btnConvert`、`progressBar`、`tvProgress` | `MainActivity`、`SubtitleConverter`、`FileNameHelper` | `SubtitleFile` 列表、檔案內容流 | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/java/com/example/lrcapp/converter/SubtitleConverter.kt`、`app/src/main/java/com/example/lrcapp/util/FileNameHelper.kt` |
-| 一般輸出流程 | 轉換成功後自動保存 | `Toast`、`tvOutputDir` | `MainActivity`、`StorageHelper` | `lrcContent`、`outputDirUri` 或預設下載目錄 | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/java/com/example/lrcapp/util/StorageHelper.kt` |
-| 原文件目錄輸出流程 | 開啟原目錄模式後轉換成功 | `switchOutputToSourceDirectory`、目錄授權 picker、`Toast` | `MainActivity`、`StorageHelper`、`SettingsManager` | `sourceDirectoryKey`、SAF tree URI、`SharedPreferences` | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/java/com/example/lrcapp/util/StorageHelper.kt`、`app/src/main/java/com/example/lrcapp/util/SettingsManager.kt` |
-| 文件列表清除與 UI 重置 | 點「清除文件列表」 | `btnClearFileList`、`RecyclerView`、`progressBar`、`tvProgress` | `MainActivity`、`FileListUiPolicy` | `files`、`pendingSource*` 暫存狀態 | `app/src/main/java/com/example/lrcapp/MainActivity.kt`、`app/src/main/java/com/example/lrcapp/util/FileListUiPolicy.kt` |
-| 列表項狀態顯示規則 | RecyclerView 綁定 | `item_subtitle_file.xml` | `SubtitleFileAdapter`、`FileStatus` | `SubtitleFile.status`、`errorMessage`、`outputFileName` | `app/src/main/java/com/example/lrcapp/adapter/SubtitleFileAdapter.kt`、`app/src/main/java/com/example/lrcapp/model/SubtitleFile.kt` |
+| App 啟動與設定載入 | App 冷啟動 | `MainActivity`、`toolbar`、`tvOutputDir` | `MainActivity`、`SettingsManager` | `SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt` |
+| 輸出模式切換與互斥控制 | 「輸出到原文件目錄」開關 | `switchOutputToSourceDirectory`、`btnSelectOutputDir`、`btnClearOutputDir` | `MainActivity`、`OutputSettingsPolicy` | `AppSettings`、`SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/OutputSettingsPolicy.kt` |
+| 自訂輸出目錄選擇與清除 | 點「選擇目錄」/「清除目錄」 | `btnSelectOutputDir`、`btnClearOutputDir`、`tvOutputDir` | `MainActivity`、`SettingsManager` | SAF tree URI、`SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt` |
+| 字幕檔選取與權限分流 | 點「選擇文件」 | `btnSelectFiles` | `MainActivity` | `ActivityResultContracts.OpenMultipleDocuments`、Android 權限系統 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/AndroidManifest.xml` |
+| 檔案驗證與列表建立/合併 | 選檔回傳後 | `RecyclerView` | `MainActivity`、`FileValidator`、`FileSelectionPolicy` | `Uri`、`OpenableColumns`、`DocumentsContract` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/FileValidator.kt`、`app/src/main/java/com/example/lrcforge/util/FileSelectionPolicy.kt` |
+| 批次字幕轉 LRC | 點「開始轉換」 | `btnConvert`、`progressBar`、`tvProgress` | `MainActivity`、`SubtitleConverter`、`FileNameHelper` | `SubtitleFile` 列表、檔案內容流 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/converter/SubtitleConverter.kt`、`app/src/main/java/com/example/lrcforge/util/FileNameHelper.kt` |
+| 一般輸出流程 | 轉換成功後自動保存 | `Toast`、`tvOutputDir` | `MainActivity`、`StorageHelper` | `lrcContent`、`outputDirUri` 或預設下載目錄 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/StorageHelper.kt` |
+| 原文件目錄輸出流程 | 開啟原目錄模式後轉換成功 | `switchOutputToSourceDirectory`、目錄授權 picker、`Toast` | `MainActivity`、`StorageHelper`、`SettingsManager` | `sourceDirectoryKey`、SAF tree URI、`SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/StorageHelper.kt`、`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt` |
+| 文件列表清除與 UI 重置 | 點「清除文件列表」 | `btnClearFileList`、`RecyclerView`、`progressBar`、`tvProgress` | `MainActivity`、`FileListUiPolicy` | `files`、`pendingSource*` 暫存狀態 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/FileListUiPolicy.kt` |
+| 列表項狀態顯示規則 | RecyclerView 綁定 | `item_subtitle_file.xml` | `SubtitleFileAdapter`、`FileStatus` | `SubtitleFile.status`、`errorMessage`、`outputFileName` | `app/src/main/java/com/example/lrcforge/adapter/SubtitleFileAdapter.kt`、`app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt` |
 
 ---
 
@@ -138,14 +138,14 @@
 
 - 類別名：`MainActivity`
   - 方法名：`onCreate()`、`initViews()`、`loadSettings()`、`syncSourceDirectorySwitch()`、`setupRecyclerView()`、`setupClickListeners()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：整個 App 的初始化與流程中樞
 - 類別名：`SettingsManager`
   - 方法名：`loadSettings()`、`saveSettings()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/SettingsManager.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt`
   - 角色：從 `SharedPreferences` 載入/保存輸出設定
 - 類別名：`AppSettings`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/model/AppSettings.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/model/AppSettings.kt`
   - 角色：保存 `smartNaming`、`timePrecision`、輸出目錄與原目錄模式
 
 #### 3.1.5 關鍵條件判斷與例外處理
@@ -163,13 +163,13 @@
 
 #### 3.1.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `onCreate`
   - `loadSettings`
   - `syncSourceDirectorySwitch`
   - `setupRecyclerView`
   - `setupClickListeners`
-- `app/src/main/java/com/example/lrcapp/util/SettingsManager.kt`
+- `app/src/main/java/com/example/lrcforge/util/SettingsManager.kt`
   - `loadSettings`
   - `fromStoredValues`
 - `app/src/main/AndroidManifest.xml`
@@ -214,15 +214,15 @@
 
 - 類別名：`MainActivity`
   - 方法名：`syncSourceDirectorySwitch()`、`handleSourceDirectoryToggle()`、`updateOutputDirDisplay()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：接收 UI 事件並更新設定與顯示
 - 類別名：`OutputSettingsPolicy`
   - 方法名：`canEnableSourceDirectoryOutput()`、`canSelectCustomOutputDirectory()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/OutputSettingsPolicy.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/OutputSettingsPolicy.kt`
   - 角色：封裝輸出模式互斥規則
 - 類別名：`SettingsManager`
   - 方法名：`saveSettings()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/SettingsManager.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt`
   - 角色：將切換結果持久化
 
 #### 3.2.5 關鍵條件判斷與例外處理
@@ -239,11 +239,11 @@
 
 #### 3.2.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `syncSourceDirectorySwitch`
   - `handleSourceDirectoryToggle`
   - `updateOutputDirDisplay`
-- `app/src/main/java/com/example/lrcapp/util/OutputSettingsPolicy.kt`
+- `app/src/main/java/com/example/lrcforge/util/OutputSettingsPolicy.kt`
 
 ---
 
@@ -288,11 +288,11 @@
 
 - 類別名：`MainActivity`
   - 方法名：`handleDirectorySelection()`、`clearCustomOutputDirectory()`、`updateOutputDirDisplay()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：處理 SAF 回傳與 UI 顯示
 - 類別名：`SettingsManager`
   - 方法名：`saveSettings()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/SettingsManager.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt`
   - 角色：保存輸出目錄 URI
 
 #### 3.3.5 關鍵條件判斷與例外處理
@@ -308,7 +308,7 @@
 
 #### 3.3.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `setupClickListeners`
   - `handleDirectorySelection`
   - `clearCustomOutputDirectory`
@@ -348,7 +348,7 @@
 
 - 類別名：`MainActivity`
   - 方法名：`checkAndRequestImportPermission()`、`openFilePicker()`、`handleSelectedFiles()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：處理版本分流、權限與檔案選擇 callback
 - 元件名：`ActivityResultContracts.OpenMultipleDocuments`
   - 角色：系統文件選擇器，多選檔案
@@ -369,7 +369,7 @@
 
 #### 3.4.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `filePickerLauncher`
   - `permissionLauncher`
   - `checkAndRequestImportPermission`
@@ -417,18 +417,18 @@
 
 - 類別名：`MainActivity`
   - 方法名：`handleSelectedFiles()`、`getFileName()`、`getFileSize()`、`resolveSourceDirectoryInfo()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：將外部文件描述轉成內部模型，並回寫 UI
 - 類別名：`FileValidator`
   - 方法名：`validateFile()`、`validateFormat()`、`validateSize()`、`getExtension()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/FileValidator.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/FileValidator.kt`
   - 角色：驗證副檔名與大小上限 10MB
 - 類別名：`FileSelectionPolicy`
   - 方法名：`mergeSelections()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/FileSelectionPolicy.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/FileSelectionPolicy.kt`
   - 角色：控制覆蓋或追加清單，以及重複 `Uri` 去重
 - 類別名：`SubtitleFile`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/model/SubtitleFile.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt`
   - 角色：列表內每筆檔案的狀態與中繼資料
 
 #### 3.5.5 關鍵條件判斷與例外處理
@@ -458,16 +458,16 @@
 
 #### 3.5.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `handleSelectedFiles`
   - `getFileName`
   - `getFileSize`
   - `resolveSourceDirectoryInfo`
   - `extractParentDocumentId`
   - `extractSourceDirectoryLabel`
-- `app/src/main/java/com/example/lrcapp/util/FileValidator.kt`
-- `app/src/main/java/com/example/lrcapp/util/FileSelectionPolicy.kt`
-- `app/src/main/java/com/example/lrcapp/model/SubtitleFile.kt`
+- `app/src/main/java/com/example/lrcforge/util/FileValidator.kt`
+- `app/src/main/java/com/example/lrcforge/util/FileSelectionPolicy.kt`
+- `app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt`
 
 ---
 
@@ -515,19 +515,19 @@
 
 - 類別名：`MainActivity`
   - 方法名：`startConversion()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：批次處理總控、進度更新、結果彙整
 - 類別名：`SubtitleConverter`
   - 方法名：`convertToLrc()`、`convertContentToLrc()`、各格式轉換方法
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/converter/SubtitleConverter.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/converter/SubtitleConverter.kt`
   - 角色：依副檔名解析字幕文本並產生 LRC
 - 類別名：`FileNameHelper`
   - 方法名：`smartNaming()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/FileNameHelper.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/FileNameHelper.kt`
   - 角色：將原始檔名轉成輸出 `.lrc` 名稱
 - 類別名：`FileStatus`
   - 方法名：`isEligibleForConversion()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/model/SubtitleFile.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt`
   - 角色：決定哪些狀態可再次進入轉換
 
 #### 3.6.5 關鍵條件判斷與例外處理
@@ -552,9 +552,9 @@
 
 #### 3.6.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `startConversion`
-- `app/src/main/java/com/example/lrcapp/converter/SubtitleConverter.kt`
+- `app/src/main/java/com/example/lrcforge/converter/SubtitleConverter.kt`
   - `convertToLrc`
   - `convertContentToLrc`
   - `convertVttToLrc`
@@ -562,8 +562,8 @@
   - `convertAssToLrc`
   - `convertSmiToLrc`
   - `convertSubToLrc`
-- `app/src/main/java/com/example/lrcapp/util/FileNameHelper.kt`
-- `app/src/main/java/com/example/lrcapp/model/SubtitleFile.kt`
+- `app/src/main/java/com/example/lrcforge/util/FileNameHelper.kt`
+- `app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt`
 
 ---
 
@@ -601,11 +601,11 @@
 
 - 類別名：`SubtitleConverter`
   - 方法名：`readFileContent()`、`convertContentToLrc()`、各 parser、`cleanText()`、`cleanAssText()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/converter/SubtitleConverter.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/converter/SubtitleConverter.kt`
   - 角色：字幕解析核心
 - 類別名：`FileValidator`
   - 方法名：`getExtension()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/FileValidator.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/FileValidator.kt`
   - 角色：提供副檔名判斷
 
 #### 3.7.5 關鍵條件判斷與例外處理
@@ -634,8 +634,8 @@
 
 #### 3.7.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/converter/SubtitleConverter.kt`
-- `app/src/test/java/com/example/lrcapp/converter/SubtitleConverterTest.kt`
+- `app/src/main/java/com/example/lrcforge/converter/SubtitleConverter.kt`
+- `app/src/test/java/com/example/lrcforge/converter/SubtitleConverterTest.kt`
 
 ---
 
@@ -678,11 +678,11 @@
 
 - 類別名：`MainActivity`
   - 方法名：`downloadAllFiles()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：彙整成功檔案並決定保存策略
 - 類別名：`StorageHelper`
   - 方法名：`saveMultipleFiles()`、`saveContentToUri()`、`getDownloadDirectory()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/StorageHelper.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/StorageHelper.kt`
   - 角色：實際寫檔
 
 #### 3.8.5 關鍵條件判斷與例外處理
@@ -702,9 +702,9 @@
 
 #### 3.8.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `downloadAllFiles`
-- `app/src/main/java/com/example/lrcapp/util/StorageHelper.kt`
+- `app/src/main/java/com/example/lrcforge/util/StorageHelper.kt`
   - `saveMultipleFiles`
   - `saveContentToUri`
   - `getDownloadDirectory`
@@ -784,15 +784,15 @@
     - `applySaveResults()`
     - `resetPendingSourceSaveState()`
     - `matchesSourceDirectoryKey()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：原目錄模式的整體授權佇列與保存協調器
 - 類別名：`SettingsManager`
   - 方法名：`getSourceDirectoryUri()`、`saveSourceDirectoryUri()`、`sourceDirectoryPreferenceKey()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/SettingsManager.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt`
   - 角色：保存每個來源目錄對應的 tree URI
 - 類別名：`StorageHelper`
   - 方法名：`saveOutputTargets()`、`countSuccessfulOutputResults()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/StorageHelper.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/StorageHelper.kt`
   - 角色：對多個不同 SAF 目錄執行批次保存
 - 資料結構：`OutputTarget`、`OutputResult`、`PendingSourceOutput`
   - 角色：描述待保存任務與保存結果
@@ -831,7 +831,7 @@
 
 #### 3.9.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `downloadAllFilesToSourceDirectories`
   - `requestNextSourceDirectoryAuthorization`
   - `handleSourceDirectoryAuthorizationResult`
@@ -841,8 +841,8 @@
   - `applySaveResults`
   - `resetPendingSourceSaveState`
   - `matchesSourceDirectoryKey`
-- `app/src/main/java/com/example/lrcapp/util/SettingsManager.kt`
-- `app/src/main/java/com/example/lrcapp/util/StorageHelper.kt`
+- `app/src/main/java/com/example/lrcforge/util/SettingsManager.kt`
+- `app/src/main/java/com/example/lrcforge/util/StorageHelper.kt`
 
 ---
 
@@ -877,11 +877,11 @@
 
 - 類別名：`MainActivity`
   - 方法名：`clearFileList()`、`resetPendingSourceSaveState()`、`updateClearFileListButtonState()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/MainActivity.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - 角色：重置畫面與暫存狀態
 - 類別名：`FileListUiPolicy`
   - 方法名：`canClearFileList()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/util/FileListUiPolicy.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/util/FileListUiPolicy.kt`
   - 角色：控制清除按鈕是否可用
 
 #### 3.10.5 關鍵條件判斷與例外處理
@@ -897,11 +897,11 @@
 
 #### 3.10.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/MainActivity.kt`
+- `app/src/main/java/com/example/lrcforge/MainActivity.kt`
   - `clearFileList`
   - `updateClearFileListButtonState`
   - `resetPendingSourceSaveState`
-- `app/src/main/java/com/example/lrcapp/util/FileListUiPolicy.kt`
+- `app/src/main/java/com/example/lrcforge/util/FileListUiPolicy.kt`
 
 ---
 
@@ -939,10 +939,10 @@
 
 - 類別名：`SubtitleFileAdapter`
   - 方法名：`onBindViewHolder()`、`updateFile()`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/adapter/SubtitleFileAdapter.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/adapter/SubtitleFileAdapter.kt`
   - 角色：將資料模型映射到列表卡片 UI
 - 類別名：`SubtitleFile`
-  - 檔案路徑：`app/src/main/java/com/example/lrcapp/model/SubtitleFile.kt`
+  - 檔案路徑：`app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt`
   - 角色：提供狀態、輸出檔名、錯誤內容
 - XML：`item_subtitle_file.xml`
   - 角色：定義列表項 UI 結構
@@ -959,8 +959,8 @@
 
 #### 3.11.7 相關代碼位置
 
-- `app/src/main/java/com/example/lrcapp/adapter/SubtitleFileAdapter.kt`
-- `app/src/main/java/com/example/lrcapp/model/SubtitleFile.kt`
+- `app/src/main/java/com/example/lrcforge/adapter/SubtitleFileAdapter.kt`
+- `app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt`
 - `app/src/main/res/layout/item_subtitle_file.xml`
 
 ---
@@ -1111,3 +1111,4 @@
 - 背景同步工作
 
 如果未來文件模板要求填寫這類流程，應標示為「目前未使用」，而不是推測存在。
+

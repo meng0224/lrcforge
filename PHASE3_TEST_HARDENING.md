@@ -60,13 +60,13 @@
 ### Unit tests
 
 - `set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-- `set GRADLE_USER_HOME=D:\Git\lrcapp\.gradle-user`
+- `set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
 - `gradlew.bat testDebugUnitTest`
 
 ### Instrumentation tests
 
 - `set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-- `set GRADLE_USER_HOME=D:\Git\lrcapp\.gradle-user`
+- `set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
 - `gradlew.bat connectedDebugAndroidTest`
 
 ## 3. Current Blockers
@@ -115,3 +115,4 @@
 
 - 本文件不再重複手動 QA checklist；裝置驗證與回歸項目統一記錄於 [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)
 - 若後續要補更大範圍的 UI 自動化，請另開新文件，不把本文件擴張成總路線圖
+

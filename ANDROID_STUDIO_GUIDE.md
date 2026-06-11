@@ -1,6 +1,6 @@
 # Android Studio 開發與執行手冊
 
-本文件說明如何在 Android Studio 中開啟、執行、驗證與排查 LrcApp。它是本專案的 Android Studio 專用手冊，不是通用 IDE 百科。
+本文件說明如何在 Android Studio 中開啟、執行、驗證與排查 LrcForge。它是本專案的 Android Studio 專用手冊，不是通用 IDE 百科。
 
 相關文件：
 - 產品入口與最小建置命令：[README.md](./README.md)
@@ -12,14 +12,14 @@
 
 這份文件同時寫給兩種人：
 - Android 新手：需要從安裝 Android Studio、建立模擬器開始
-- 本專案新進維護者：想快速把 `LrcApp` 跑起來、看 Logcat、驗證功能與定位問題
+- 本專案新進維護者：想快速把 `LrcForge` 跑起來、看 Logcat、驗證功能與定位問題
 
 ## 快速開始
 
 如果你只想用最短路徑把專案跑起來，照下面做：
 
 1. 安裝 Android Studio。
-2. 用 Android Studio 開啟專案根目錄 `D:\Git\lrcapp`。
+2. 用 Android Studio 開啟專案根目錄 `D:\Git\lrcforge`。
 3. 確認已安裝 Android SDK Platform 34 與 Build Tools。
 4. 等待 Gradle Sync 完成。
 5. 選擇模擬器或實機。
@@ -54,7 +54,7 @@
 
 1. 啟動 Android Studio。
 2. 選擇 `Open`。
-3. 指向專案根目錄：`D:\Git\lrcapp`。
+3. 指向專案根目錄：`D:\Git\lrcforge`。
 4. 確認你選的是包含 `settings.gradle` 的那一層目錄。
 
 開啟後，Android Studio 會自動開始 Gradle Sync。
@@ -98,7 +98,7 @@
 3. 啟動模擬器。
 4. 等待系統進入桌面後再執行 app。
 
-## 5. 執行 LrcApp
+## 5. 執行 LrcForge
 
 ### Android Studio 內執行
 
@@ -124,7 +124,7 @@ macOS / Linux:
 
 ## 6. 本專案執行重點
 
-這一段不是 Android 通用知識，而是 LrcApp 的實際行為。
+這一段不是 Android 通用知識，而是 LrcForge 的實際行為。
 
 ### 權限與平台差異
 
@@ -209,7 +209,7 @@ Windows:
 
 ```bash
 set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr
-set GRADLE_USER_HOME=D:\Git\lrcapp\.gradle-user
+set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user
 .\gradlew.bat testDebugUnitTest
 .\gradlew.bat connectedDebugAndroidTest
 ```
@@ -231,10 +231,10 @@ set GRADLE_USER_HOME=D:\Git\lrcapp\.gradle-user
 
 1. 執行 app。
 2. 打開 Android Studio 底部的 `Logcat`。
-3. 過濾 `com.example.lrcapp`。
+3. 過濾 `com.example.lrcforge`。
 4. 關注：
    - `FATAL EXCEPTION`
-   - `Process: com.example.lrcapp`
+   - `Process: com.example.lrcforge`
    - 第一段 exception 類型與 stack trace
 
 ### App 啟動閃退時怎麼抓問題
@@ -327,3 +327,4 @@ set GRADLE_USER_HOME=D:\Git\lrcapp\.gradle-user
   - Android 版本差異與裝置驗證紀錄
 - `PHASE3_TEST_HARDENING.md`
   - 測試資產、執行方式與阻塞
+

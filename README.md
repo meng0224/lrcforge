@@ -1,6 +1,6 @@
-# LrcApp
+# LrcForge
 
-LrcApp 是一個 Android 字幕轉換工具，可將常見字幕格式轉成 LRC 歌詞格式。
+LrcForge 是一個 Android 字幕轉換工具，可將常見字幕格式轉成 LRC 歌詞格式。
 
 ## 開發文件索引
 
