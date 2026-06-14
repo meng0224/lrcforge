@@ -48,6 +48,17 @@
 - `FileListUiPolicyTest`
   - 空列表時禁用「清除文件列表」按鈕
   - 有列表時啟用「清除文件列表」按鈕
+- `ImportSelectionCoordinatorTest`
+  - 一般匯入覆蓋列表時回報選取數
+  - 追加匯入時回報新增與重複數
+  - 遞迴匯入時回報重複與無效略過數
+- `SourceDirectoryPathHelperTest`
+  - 來源目錄 parent document id 與 label 解析
+  - 相對子資料夾輸出路徑摘要
+- `SourceSaveAuthorizationStateTest`
+  - 待授權 key 去重排隊
+  - 授權後移入 ready targets
+  - 拒絕授權後轉為保存失敗
 
 ### Instrumentation tests already added
 
@@ -60,13 +71,13 @@
 ### Unit tests
 
 - `set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-- `set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
+- `set GRADLE_USER_HOME=D:\06_開發與工具\Git\lrcapp\.gradle-user`
 - `gradlew.bat testDebugUnitTest`
 
 ### Instrumentation tests
 
 - `set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-- `set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
+- `set GRADLE_USER_HOME=D:\06_開發與工具\Git\lrcapp\.gradle-user`
 - `gradlew.bat connectedDebugAndroidTest`
 
 ## 3. Current Blockers
@@ -75,15 +86,16 @@
 
 - Status: `BLOCKED`
 - Blocking reason:
-  - Gradle wrapper still attempts to download `gradle-9.0-milestone-1-bin.zip`
-  - Current environment blocks outbound network access
+  - `assembleDebug` passes with Android Studio JBR
+  - `compileDebugUnitTestKotlin` passes
+  - `testDebugUnitTest` reaches JUnit runtime but every test class fails with `ClassNotFoundException`
 
 ### Instrumentation execution
 
 - Status: `BLOCKED`
 - Blocking reason:
   - No available device / emulator in this environment
-  - Same Gradle wrapper / network constraint applies before execution
+  - Unit test runtime issue should be understood before expanding instrumentation coverage
 
 ## 4. Next Test Gaps
 

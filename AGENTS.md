@@ -115,11 +115,12 @@ A UI task is not done unless:
 ## 環境注意事項
 
 - Gradle wrapper 目前設定使用 `gradle-9.0-milestone-1-bin.zip`。
-- Repo 文件提到，某些環境無法下載這個 distribution。
+- 命令列建置建議使用 Android Studio 內建 JBR。
 - Windows 環境下，專案文件另外建議設定：
 - `JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-- `GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
-- 在此 workspace 中，`JAVA_HOME` 可能不存在；若未設定，Gradle 指令預期會失敗。
+- `GRADLE_USER_HOME=D:\06_開發與工具\Git\lrcapp\.gradle-user`
+- 在此 workspace 中，未設定 `JAVA_HOME` 時可能會落到 Java 8，導致 Android Gradle Plugin 無法執行。
+- 最近狀態：`assembleDebug` 與 `compileDebugUnitTestKotlin` 可通過；`testDebugUnitTest` 目前卡在 JUnit runtime 對所有測試類別的 `ClassNotFoundException`。
 
 ## 建置指令
 

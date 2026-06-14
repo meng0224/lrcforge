@@ -13,6 +13,14 @@
 - `app/src/main/AndroidManifest.xml`
 - `app/src/test/java/com/example/lrcforge/*` 中與邏輯行為直接相關的測試
 
+同步狀態：
+
+- 本文件已針對 2026-06 的第一段 Phase 4 低風險抽離做局部同步。
+- 匯入列表合併與回饋文案已由 `ImportSelectionCoordinator` 承接。
+- 來源目錄 key / label / 相對路徑摘要等純邏輯已由 `SourceDirectoryPathHelper` 承接。
+- 原文件目錄輸出時的待授權與待保存暫存狀態已由 `SourceSaveAuthorizationState` 承接。
+- 詳細逐步流程仍保留原本結構，後續若繼續拆 ViewModel / UseCase / Repository，需再次同步。
+
 本文件明確區分：
 
 - 已由主 UI 流程實際使用的功能
@@ -31,7 +39,7 @@
 
 - UI 入口只有 `MainActivity`
 - 畫面採傳統 XML View，不是 Compose UI
-- 狀態主要保存在 `MainActivity` 內的記憶體欄位與 `SharedPreferences`
+- 狀態主要保存在 `MainActivity` 內的記憶體欄位、`SourceSaveAuthorizationState` 與 `SharedPreferences`
 - 業務邏輯分散在 `converter` 與 `util` 下的 helper / policy 類別
 - 儲存層使用兩條路徑：
   - SAF `DocumentFile` / `contentResolver`
@@ -59,7 +67,8 @@
 | UI 呈現層 | `activity_main.xml`、`item_subtitle_file.xml`、`SubtitleFileAdapter` | 顯示儲存模式、按鈕、進度列、檔案列表與每筆狀態 |
 | 狀態模型 | `SubtitleFile`、`FileStatus`、`AppSettings` | 保存目前選入檔案、轉換狀態、輸出設定、來源目錄資訊 |
 | 轉換邏輯 | `SubtitleConverter` | 依副檔名分派字幕解析流程，將字幕文本轉成 LRC |
-| 輸入驗證/策略 | `FileValidator`、`FileSelectionPolicy`、`OutputSettingsPolicy`、`FileListUiPolicy`、`FileNameHelper` | 驗證格式/大小、合併檔案列表、限制輸出模式互斥、控制 UI 可操作性、產生輸出檔名 |
+| 輸入驗證/策略 | `FileValidator`、`FileSelectionPolicy`、`ImportSelectionCoordinator`、`OutputSettingsPolicy`、`FileListUiPolicy`、`FileNameHelper` | 驗證格式/大小、合併檔案列表與回饋文案、限制輸出模式互斥、控制 UI 可操作性、產生輸出檔名 |
+| 來源目錄輔助 | `SourceDirectoryPathHelper`、`SourceSaveAuthorizationState` | 解析來源目錄 key / label / 相對路徑摘要，管理原文件目錄輸出的待授權與待保存狀態 |
 | 儲存與設定 | `StorageHelper`、`SettingsManager` | 寫出 LRC、管理 SAF tree URI、保存使用者設定與來源目錄授權 |
 
 ### 1.3 UI、狀態管理、資料層、網路層、儲存層之間的關係
@@ -70,9 +79,10 @@
 2. `MainActivity` 直接操作記憶體中的 `files: MutableList<SubtitleFile>` 與 `settings: AppSettings`。
 3. `MainActivity` 視情境呼叫：
    - `FileValidator` 驗證選入檔案
-   - `FileSelectionPolicy` 合併列表
+   - `ImportSelectionCoordinator` / `FileSelectionPolicy` 合併列表並產生回饋文案
    - `SubtitleConverter` 執行格式轉換
    - `FileNameHelper` 生成輸出檔名
+   - `SourceDirectoryPathHelper` / `SourceSaveAuthorizationState` 處理來源目錄資訊與待授權狀態
    - `StorageHelper` 保存轉換結果
    - `SettingsManager` 讀寫設定與來源目錄授權
 4. UI 更新主要透過：
@@ -95,11 +105,11 @@
 | 輸出模式切換與互斥控制 | 「輸出到原文件目錄」開關 | `switchOutputToSourceDirectory`、`btnSelectOutputDir`、`btnClearOutputDir` | `MainActivity`、`OutputSettingsPolicy` | `AppSettings`、`SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/OutputSettingsPolicy.kt` |
 | 自訂輸出目錄選擇與清除 | 點「選擇目錄」/「清除目錄」 | `btnSelectOutputDir`、`btnClearOutputDir`、`tvOutputDir` | `MainActivity`、`SettingsManager` | SAF tree URI、`SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt` |
 | 字幕檔選取與權限分流 | 點「選擇文件」 | `btnSelectFiles` | `MainActivity` | `ActivityResultContracts.OpenMultipleDocuments`、Android 權限系統 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/AndroidManifest.xml` |
-| 檔案驗證與列表建立/合併 | 選檔回傳後 | `RecyclerView` | `MainActivity`、`FileValidator`、`FileSelectionPolicy` | `Uri`、`OpenableColumns`、`DocumentsContract` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/FileValidator.kt`、`app/src/main/java/com/example/lrcforge/util/FileSelectionPolicy.kt` |
+| 檔案驗證與列表建立/合併 | 選檔回傳後 | `RecyclerView` | `MainActivity`、`FileValidator`、`ImportSelectionCoordinator`、`FileSelectionPolicy` | `Uri`、`OpenableColumns`、`DocumentsContract` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/FileValidator.kt`、`app/src/main/java/com/example/lrcforge/util/ImportSelectionCoordinator.kt`、`app/src/main/java/com/example/lrcforge/util/FileSelectionPolicy.kt` |
 | 批次字幕轉 LRC | 點「開始轉換」 | `btnConvert`、`progressBar`、`tvProgress` | `MainActivity`、`SubtitleConverter`、`FileNameHelper` | `SubtitleFile` 列表、檔案內容流 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/converter/SubtitleConverter.kt`、`app/src/main/java/com/example/lrcforge/util/FileNameHelper.kt` |
 | 一般輸出流程 | 轉換成功後自動保存 | `Toast`、`tvOutputDir` | `MainActivity`、`StorageHelper` | `lrcContent`、`outputDirUri` 或預設下載目錄 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/StorageHelper.kt` |
-| 原文件目錄輸出流程 | 開啟原目錄模式後轉換成功 | `switchOutputToSourceDirectory`、目錄授權 picker、`Toast` | `MainActivity`、`StorageHelper`、`SettingsManager` | `sourceDirectoryKey`、SAF tree URI、`SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/StorageHelper.kt`、`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt` |
-| 文件列表清除與 UI 重置 | 點「清除文件列表」 | `btnClearFileList`、`RecyclerView`、`progressBar`、`tvProgress` | `MainActivity`、`FileListUiPolicy` | `files`、`pendingSource*` 暫存狀態 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/FileListUiPolicy.kt` |
+| 原文件目錄輸出流程 | 開啟原目錄模式後轉換成功 | `switchOutputToSourceDirectory`、目錄授權 picker、`Toast` | `MainActivity`、`SourceDirectoryPathHelper`、`SourceSaveAuthorizationState`、`StorageHelper`、`SettingsManager` | `sourceDirectoryKey`、SAF tree URI、`SharedPreferences` | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/SourceDirectoryPathHelper.kt`、`app/src/main/java/com/example/lrcforge/util/SourceSaveAuthorizationState.kt`、`app/src/main/java/com/example/lrcforge/util/StorageHelper.kt`、`app/src/main/java/com/example/lrcforge/util/SettingsManager.kt` |
+| 文件列表清除與 UI 重置 | 點「清除文件列表」 | `btnClearFileList`、`RecyclerView`、`progressBar`、`tvProgress` | `MainActivity`、`FileListUiPolicy`、`SourceSaveAuthorizationState` | `files`、來源目錄授權暫存狀態 | `app/src/main/java/com/example/lrcforge/MainActivity.kt`、`app/src/main/java/com/example/lrcforge/util/FileListUiPolicy.kt`、`app/src/main/java/com/example/lrcforge/util/SourceSaveAuthorizationState.kt` |
 | 列表項狀態顯示規則 | RecyclerView 綁定 | `item_subtitle_file.xml` | `SubtitleFileAdapter`、`FileStatus` | `SubtitleFile.status`、`errorMessage`、`outputFileName` | `app/src/main/java/com/example/lrcforge/adapter/SubtitleFileAdapter.kt`、`app/src/main/java/com/example/lrcforge/model/SubtitleFile.kt` |
 
 ---
@@ -1012,7 +1022,8 @@
   - 狀態管理者
   - 流程協調器
   - 保存流程編排者
-- 這代表文件中提到的多數主要功能，其實不是經過 `ViewModel -> UseCase -> Repository`，而是直接由 `MainActivity -> util/helper`
+- 第一段 Phase 4 抽離後，匯入合併文案、來源目錄路徑解析、來源目錄待授權狀態已移到 util helper。
+- 這代表文件中提到的多數主要功能仍不是經過 `ViewModel -> UseCase -> Repository`，而是由 `MainActivity -> util/helper` 協作完成。
 
 ---
 
@@ -1024,7 +1035,7 @@
 
 ### 5.2 選檔與驗證流程
 
-`點選擇文件 -> checkAndRequestImportPermission() -> OpenMultipleDocuments -> handleSelectedFiles() -> getFileName/getFileSize -> FileValidator.validateFile() -> 建立 SubtitleFile -> FileSelectionPolicy.mergeSelections() -> RecyclerView 更新`
+`點選擇文件 -> checkAndRequestImportPermission() -> OpenMultipleDocuments -> handleSelectedFiles() -> getFileName/getFileSize -> FileValidator.validateFile() -> 建立 SubtitleFile -> ImportSelectionCoordinator / FileSelectionPolicy 合併列表與產生回饋文案 -> RecyclerView 更新`
 
 ### 5.3 批次轉換流程
 
@@ -1036,7 +1047,7 @@
 
 ### 5.5 原文件目錄輸出與授權重用流程
 
-`downloadAllFilesToSourceDirectories() -> 檢查 sourceDirectoryKey -> 讀取既有 treeUri -> 未授權者進入 pending queue -> requestNextSourceDirectoryAuthorization() -> 使用者選對應目錄 -> saveSourceDirectoryUri() -> savePendingSourceTargets() -> applySaveResults() -> 成功或錯誤回寫到列表`
+`downloadAllFilesToSourceDirectories() -> 檢查 sourceDirectoryKey / importRootDirectoryKey -> SourceSaveAuthorizationState 區分 ready targets 與待授權輸出 -> requestNextAuthorization() -> 使用者選對應目錄 -> saveSourceDirectoryUri() / saveImportRootDirectoryUri() -> savePendingSourceTargets() -> applySaveResults() -> 成功或錯誤回寫到列表`
 
 ### 5.6 實際產品主線
 

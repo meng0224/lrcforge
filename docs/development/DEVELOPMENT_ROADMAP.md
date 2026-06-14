@@ -22,9 +22,9 @@
   - SAF 同名輸出不再先刪舊檔
   - 第一批單元測試已補上
 - 未完成：
-  - 在可用環境實際跑通 unit tests
+  - `testDebugUnitTest` 尚未跑通；目前可執行到 JUnit runtime，但所有測試類別出現 `ClassNotFoundException`
 - 下一步：
-  - 在外部可用 Gradle 環境執行 `testDebugUnitTest`
+  - 排查 Gradle / JUnit test runtime classpath 後重跑 `testDebugUnitTest`
 
 ### Phase 2: Android 11+ 權限與儲存策略整理
 
@@ -54,27 +54,33 @@
   - `OutputSettingsPolicyTest`
   - `FileSelectionPolicyTest`
   - `FileListUiPolicyTest`
+  - `ImportSelectionCoordinatorTest`
+  - `SourceDirectoryPathHelperTest`
+  - `SourceSaveAuthorizationStateTest`
   - 最小 instrumentation 測試 `MainActivityInstrumentationTest`
 - 未完成：
-  - Unit tests 尚未在此環境跑通
+  - Unit tests 尚未在此環境跑通；`compileDebugUnitTestKotlin` 已通過，但 `testDebugUnitTest` 目前在 JUnit runtime 找不到測試類別
   - Instrumentation tests 尚未執行
   - Phase 2 驗證結果尚未併入測試執行結論
 - 下一步：
-  - 先在可用環境跑 `testDebugUnitTest`
+  - 先排查 `testDebugUnitTest` 的 `ClassNotFoundException`
   - 再跑 `connectedDebugAndroidTest`
 
 ### Phase 4: 結構重整與可維護性提升
 
-- 狀態：`PLANNED`
+- 狀態：`IN PROGRESS`
 - 目標：降低 `MainActivity` 的耦合度，提升 parser / storage / flow 的可維護性
 - 已完成：
-  - 無
+  - 已完成第一段低風險抽離，保留 Android Views 與既有流程
+  - `ImportSelectionCoordinator` 接手匯入列表合併與回饋文案
+  - `SourceDirectoryPathHelper` 接手來源目錄 key / label / 相對路徑摘要等純邏輯
+  - `SourceSaveAuthorizationState` 接手來源目錄輸出時的待授權與待保存狀態
 - 未完成：
-  - `MainActivity` 職責拆分
+  - ViewModel / UseCase / Repository 層尚未引入
   - parser 類別拆分
   - 更清楚的錯誤模型
 - 下一步：
-  - 等 Phase 2 驗證與 Phase 3 自動化穩定後再開始
+  - 先排查 unit test runtime，再視風險繼續拆 `MainActivity` 的 conversion / storage flow
 
 ## 2. Feature Track
 
@@ -95,8 +101,9 @@
   - 主畫面新增「清除文件列表」按鈕
   - `StorageHelper` 新增多目標輸出模型、保存驗證與檔名改寫防呆
   - 已補 `FileSelectionPolicyTest`、`FileListUiPolicyTest`、`StorageHelperTest`
+  - 已將匯入合併、來源目錄路徑解析、來源目錄授權暫存狀態抽到 helper 並補單元測試
 - 未完成：
-  - 在可用環境實際編譯並跑通測試
+  - `assembleDebug` 與 `compileDebugUnitTestKotlin` 已通過，但 unit tests 尚未跑通
   - 實機驗證單一來源 / 多來源 / 遞迴匯入 / 重用授權流程
   - 驗證清除列表後不殘留舊的待授權/待保存狀態
 - 下一步：
@@ -106,14 +113,16 @@
 
 ## 3. Current Blockers
 
-- `gradlew.bat testDebugUnitTest` 受限於目前環境無法下載 `gradle-9.0-milestone-1-bin.zip`
+- `assembleDebug` 已通過
+- `compileDebugUnitTestKotlin` 已通過
+- `gradlew.bat testDebugUnitTest` 可執行到 JUnit runtime，但所有測試類別目前出現 `ClassNotFoundException`
 - instrumentation 需要可用 emulator / device
 - Phase 2 雖已實作，但尚未完成裝置驗證回填
 - 原文件目錄輸出、遞迴匯入與保存驗證功能尚未在實機上完成完整驗證
 
 ## 4. Immediate Next Steps
 
-1. 在可提供 Gradle 發行版的環境執行 unit tests
+1. 排查 `testDebugUnitTest` 的測試 classpath / runner 問題
 2. 在可用 emulator / device 執行 instrumentation tests
 3. 依 validation report 完成 Android 11+ 與 Android 7~10 驗證
 4. 驗證遞迴匯入、匯入根目錄授權重用、檔名維持 `.lrc` 與清除列表流程
@@ -124,5 +133,5 @@
 - Phase 1 完成條件：功能修復已上線且 unit tests 在正式環境跑通
 - Phase 2 完成條件：Android 11+ 與 Android 7~10 驗證結果已回填且通過
 - Phase 3 完成條件：unit tests 與最小 instrumentation 至少各跑通一次
-- Phase 4 開始條件：Phase 2、3 不再處於 `VALIDATION PENDING` / `IN PROGRESS`
+- Phase 4 下一段條件：unit test runtime 問題釐清，並確認第一段 helper 抽離沒有回歸
 - 新功能完成條件：來源目錄輸出在單一來源、多來源、遞迴匯入、匯入根目錄一次授權、`.lrc` 檔名正確與清除列表場景都通過手動驗證

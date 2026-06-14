@@ -30,7 +30,7 @@
 
 ## 2. Environment
 
-- Repo: `D:\Git\lrcforge`
+- Repo: `D:\06_開發與工具\Git\lrcapp`
 - Date:
 - Tester:
 - Device / Emulator:
@@ -43,12 +43,13 @@
 
 - Command:
   - `set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
-  - `set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user`
+  - `set GRADLE_USER_HOME=D:\06_開發與工具\Git\lrcapp\.gradle-user`
   - `gradlew.bat testDebugUnitTest`
 - Current status: `BLOCKED`
 - Blocking reason:
-  - Gradle wrapper attempts to download `gradle-9.0-milestone-1-bin.zip`
-  - Current environment blocks outbound network access
+  - With Android Studio JBR, Gradle can build and compile tests
+  - `testDebugUnitTest` currently reaches JUnit runtime but every test class fails with `ClassNotFoundException`
+  - `assembleDebug` and `compileDebugUnitTestKotlin` pass
 
 ### Instrumentation tests
 
@@ -106,12 +107,12 @@
 
 ### Blocked
 
-- Unit test execution blocked by Gradle wrapper network download
+- Unit test execution blocked by JUnit runtime `ClassNotFoundException` for all test classes
 - Instrumentation execution pending device/emulator availability
 
 ## 6. Follow-up
 
-- If Gradle distribution is pre-provisioned, rerun unit tests and record result here
+- Investigate the Gradle / JUnit runtime classpath issue, then rerun unit tests and record result here
 - Run `connectedDebugAndroidTest` on available emulator/device
 - Update `Status` and checklist after each validation round
 

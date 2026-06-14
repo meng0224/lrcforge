@@ -19,7 +19,7 @@
 如果你只想用最短路徑把專案跑起來，照下面做：
 
 1. 安裝 Android Studio。
-2. 用 Android Studio 開啟專案根目錄 `D:\Git\lrcforge`。
+2. 用 Android Studio 開啟專案根目錄 `D:\06_開發與工具\Git\lrcapp`。
 3. 確認已安裝 Android SDK Platform 34 與 Build Tools。
 4. 等待 Gradle Sync 完成。
 5. 選擇模擬器或實機。
@@ -54,7 +54,7 @@
 
 1. 啟動 Android Studio。
 2. 選擇 `Open`。
-3. 指向專案根目錄：`D:\Git\lrcforge`。
+3. 指向專案根目錄：`D:\06_開發與工具\Git\lrcapp`。
 4. 確認你選的是包含 `settings.gradle` 的那一層目錄。
 
 開啟後，Android Studio 會自動開始 Gradle Sync。
@@ -70,7 +70,7 @@
 本專案目前的 Gradle wrapper 版本會嘗試下載：
 - `gradle-9.0-milestone-1-bin.zip`
 
-如果你的環境無法連外，Gradle Sync、建置或測試都可能失敗。這不是產品程式碼邏輯錯誤，而是開發環境阻塞。
+如果你的環境無法連外，Gradle Sync、建置或測試都可能失敗。若使用命令列，建議明確設定 Android Studio 內建 JBR。當前 workspace 已確認 `assembleDebug` 與 `compileDebugUnitTestKotlin` 可通過，但 `testDebugUnitTest` 目前卡在 JUnit runtime 對所有測試類別的 `ClassNotFoundException`。
 
 ### 如果 Sync 失敗，先檢查
 
@@ -209,14 +209,16 @@ Windows:
 
 ```bash
 set JAVA_HOME=C:\Program Files\Android\Android Studio\jbr
-set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user
+set GRADLE_USER_HOME=D:\06_開發與工具\Git\lrcapp\.gradle-user
 .\gradlew.bat testDebugUnitTest
 .\gradlew.bat connectedDebugAndroidTest
 ```
 
 ### 目前已知阻塞
 
-- 目前環境可能因無法下載 `gradle-9.0-milestone-1-bin.zip` 導致測試無法跑通
+- `assembleDebug` 可通過
+- `compileDebugUnitTestKotlin` 可通過
+- `testDebugUnitTest` 目前會進入 JUnit runtime，但所有測試類別出現 `ClassNotFoundException`
 - instrumentation 測試需要可用模擬器或實機
 
 如果你要看詳細的測試資產與阻塞，請直接看：
