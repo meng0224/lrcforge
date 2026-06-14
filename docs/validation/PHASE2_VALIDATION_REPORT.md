@@ -1,6 +1,6 @@
 # Phase 2 Validation Report
 
-本文件只負責記錄 Phase 2 的驗證執行結果。當前整體狀態請看 [DEVELOPMENT_ROADMAP.md](./DEVELOPMENT_ROADMAP.md)。
+本文件只負責記錄 Phase 2 的驗證執行結果。當前整體狀態請看 [DEVELOPMENT_ROADMAP.md](../development/DEVELOPMENT_ROADMAP.md)。
 
 ## Current Status
 

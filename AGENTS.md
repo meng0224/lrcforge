@@ -164,7 +164,7 @@ A UI task is not done unless:
 - 修改使用者流程前，先讀 `README.md` 確認產品行為。
 - `converter`、`model`、`util` 底下的純邏輯，優先用本機單元測試驗證。
 - 只有在需要 Android runtime 的 UI / 狀態整合情境時，才使用 instrumentation tests。
-- 若變更 storage、SAF 或權限流程，請同步參考 `PHASE2_VALIDATION_REPORT.md` 與 `PHASE3_TEST_HARDENING.md`。
+- 若變更 storage、SAF 或權限流程，請同步參考 `docs/validation/PHASE2_VALIDATION_REPORT.md` 與 `docs/validation/PHASE3_TEST_HARDENING.md`。
 - 若 Gradle 無法執行，仍應做靜態分析，並清楚說明哪些項目尚未驗證。
 
 ## 程式風格基準

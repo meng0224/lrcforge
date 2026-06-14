@@ -18,7 +18,7 @@
 - 已採納方案：
   - Android 11+ 匯入與自訂輸出目錄改為依賴 SAF
   - `MANAGE_EXTERNAL_STORAGE` 與 `requestLegacyExternalStorage` 從產品路徑移除
-  - 驗證結果另記錄於 [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)
+- 驗證結果另記錄於 [PHASE2_VALIDATION_REPORT.md](../validation/PHASE2_VALIDATION_REPORT.md)
 
 ### Finding 2
 
@@ -65,6 +65,6 @@
 
 當時定義的驗證方向如下，現已分流到專門文件：
 
-- Android 版本差異驗證：見 [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)
-- 測試補強與執行鏈路：見 [PHASE3_TEST_HARDENING.md](./PHASE3_TEST_HARDENING.md)
+- Android 版本差異驗證：見 [PHASE2_VALIDATION_REPORT.md](../validation/PHASE2_VALIDATION_REPORT.md)
+- 測試補強與執行鏈路：見 [PHASE3_TEST_HARDENING.md](../validation/PHASE3_TEST_HARDENING.md)
 - 當前 phase 狀態與下一步：見 [DEVELOPMENT_ROADMAP.md](./DEVELOPMENT_ROADMAP.md)

@@ -7,8 +7,8 @@
 
 其餘開發文件分工如下：
 - 歷史 / 決策背景：[REVIEW_FINDINGS_PLAN.md](./REVIEW_FINDINGS_PLAN.md)
-- Phase 2 驗證執行：[PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)
-- Phase 3 測試策略與執行鏈路：[PHASE3_TEST_HARDENING.md](./PHASE3_TEST_HARDENING.md)
+- Phase 2 驗證執行：[PHASE2_VALIDATION_REPORT.md](../validation/PHASE2_VALIDATION_REPORT.md)
+- Phase 3 測試策略與執行鏈路：[PHASE3_TEST_HARDENING.md](../validation/PHASE3_TEST_HARDENING.md)
 
 ## 1. Current Status
 
@@ -39,7 +39,7 @@
 - 未完成：
   - Android 11+ / Android 7~10 的實機或模擬器驗證結果尚未回填
 - 下一步：
-  - 依 [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md) 完成驗證與回填
+  - 依 [PHASE2_VALIDATION_REPORT.md](../validation/PHASE2_VALIDATION_REPORT.md) 完成驗證與回填
 
 ### Phase 3: 測試補強與回歸保護
 

@@ -4,12 +4,13 @@ LrcForge 是一個 Android 字幕轉換工具，可將常見字幕格式轉成 L
 
 ## 開發文件索引
 
-- [DEVELOPMENT_ROADMAP.md](./DEVELOPMENT_ROADMAP.md) - 主開發路線圖與目前狀態
-- [REVIEW_FINDINGS_PLAN.md](./REVIEW_FINDINGS_PLAN.md) - code review findings 的歷史決策背景
-- [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md) - Android 版本差異與 Phase 2 驗證記錄
-- [PHASE3_TEST_HARDENING.md](./PHASE3_TEST_HARDENING.md) - 測試補強、執行鏈路與阻塞
-- [FIGMA_DESIGN_PROMPT_PACK.md](./FIGMA_DESIGN_PROMPT_PACK.md) - 可直接交給設計師或設計型 AI 的 Figma 設計提示詞包
-- [後續路線建議.md](./後續路線建議.md) - Phase 4 之後的策略發展方向與優先級建議
+- [DEVELOPMENT_ROADMAP.md](./docs/development/DEVELOPMENT_ROADMAP.md) - 主開發路線圖與目前狀態
+- [FEATURE_LOGIC_MAP.md](./docs/development/FEATURE_LOGIC_MAP.md) - 既有功能流程與邏輯地圖
+- [REVIEW_FINDINGS_PLAN.md](./docs/development/REVIEW_FINDINGS_PLAN.md) - code review findings 的歷史決策背景
+- [PHASE2_VALIDATION_REPORT.md](./docs/validation/PHASE2_VALIDATION_REPORT.md) - Android 版本差異與 Phase 2 驗證記錄
+- [PHASE3_TEST_HARDENING.md](./docs/validation/PHASE3_TEST_HARDENING.md) - 測試補強、執行鏈路與阻塞
+- [FIGMA_DESIGN_PROMPT_PACK.md](./docs/design/FIGMA_DESIGN_PROMPT_PACK.md) - 可直接交給設計師或設計型 AI 的 Figma 設計提示詞包
+- [後續路線建議.md](./docs/planning/後續路線建議.md) - Phase 4 之後的策略發展方向與優先級建議
 
 ## 主要功能
 
@@ -86,8 +87,8 @@ LrcForge 是一個 Android 字幕轉換工具，可將常見字幕格式轉成 L
 ./gradlew installDebug
 ```
 
-完整 IDE 操作與裝置執行請見 [ANDROID_STUDIO_GUIDE.md](./ANDROID_STUDIO_GUIDE.md)。
+完整 IDE 操作與裝置執行請見 [ANDROID_STUDIO_GUIDE.md](./docs/development/ANDROID_STUDIO_GUIDE.md)。
 
 ## Android Studio 詳細教學
 
-Android Studio 安裝、Gradle Sync、模擬器與 Logcat 操作請見 [ANDROID_STUDIO_GUIDE.md](./ANDROID_STUDIO_GUIDE.md)。
+Android Studio 安裝、Gradle Sync、模擬器與 Logcat 操作請見 [ANDROID_STUDIO_GUIDE.md](./docs/development/ANDROID_STUDIO_GUIDE.md)。

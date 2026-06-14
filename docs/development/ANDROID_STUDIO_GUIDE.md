@@ -3,10 +3,10 @@
 本文件說明如何在 Android Studio 中開啟、執行、驗證與排查 LrcForge。它是本專案的 Android Studio 專用手冊，不是通用 IDE 百科。
 
 相關文件：
-- 產品入口與最小建置命令：[README.md](./README.md)
+- 產品入口與最小建置命令：[README.md](../../README.md)
 - 開發狀態與下一步：[DEVELOPMENT_ROADMAP.md](./DEVELOPMENT_ROADMAP.md)
-- Android 版本差異驗證：[PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)
-- 測試資產與阻塞：[PHASE3_TEST_HARDENING.md](./PHASE3_TEST_HARDENING.md)
+- Android 版本差異驗證：[PHASE2_VALIDATION_REPORT.md](../validation/PHASE2_VALIDATION_REPORT.md)
+- 測試資產與阻塞：[PHASE3_TEST_HARDENING.md](../validation/PHASE3_TEST_HARDENING.md)
 
 ## 適用對象
 
@@ -220,10 +220,10 @@ set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user
 - instrumentation 測試需要可用模擬器或實機
 
 如果你要看詳細的測試資產與阻塞，請直接看：
-- [PHASE3_TEST_HARDENING.md](./PHASE3_TEST_HARDENING.md)
+- [PHASE3_TEST_HARDENING.md](../validation/PHASE3_TEST_HARDENING.md)
 
 如果你要看裝置驗證清單，請看：
-- [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)
+- [PHASE2_VALIDATION_REPORT.md](../validation/PHASE2_VALIDATION_REPORT.md)
 
 ## 9. Logcat 與排錯
 
@@ -309,11 +309,11 @@ set GRADLE_USER_HOME=D:\Git\lrcforge\.gradle-user
 
 如果你是第一次接手這個專案，建議順序如下：
 
-1. [README.md](./README.md)
+1. [README.md](../../README.md)
 2. 本文件
 3. [DEVELOPMENT_ROADMAP.md](./DEVELOPMENT_ROADMAP.md)
-4. [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)
-5. [PHASE3_TEST_HARDENING.md](./PHASE3_TEST_HARDENING.md)
+4. [PHASE2_VALIDATION_REPORT.md](../validation/PHASE2_VALIDATION_REPORT.md)
+5. [PHASE3_TEST_HARDENING.md](../validation/PHASE3_TEST_HARDENING.md)
 
 ## 12. 文件角色說明
 

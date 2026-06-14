@@ -1,6 +1,6 @@
 # Phase 3 Test Hardening
 
-本文件只負責記錄 Phase 3 的測試資產、執行方式、阻塞與後續 instrumentation 範圍。當前 phase 狀態請看 [DEVELOPMENT_ROADMAP.md](./DEVELOPMENT_ROADMAP.md)。Phase 2 的手動驗證與裝置結果請看 [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)。
+本文件只負責記錄 Phase 3 的測試資產、執行方式、阻塞與後續 instrumentation 範圍。當前 phase 狀態請看 [DEVELOPMENT_ROADMAP.md](../development/DEVELOPMENT_ROADMAP.md)。Phase 2 的手動驗證與裝置結果請看 [PHASE2_VALIDATION_REPORT.md](./PHASE2_VALIDATION_REPORT.md)。
 
 ## 1. Test Assets Added
 
