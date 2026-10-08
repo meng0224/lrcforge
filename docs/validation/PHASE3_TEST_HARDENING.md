@@ -84,18 +84,30 @@
 
 ### Unit test execution
 
-- Status: `BLOCKED`
-- Blocking reason:
-  - `assembleDebug` passes with Android Studio JBR
-  - `compileDebugUnitTestKotlin` passes
-  - `testDebugUnitTest` reaches JUnit runtime but every test class fails with `ClassNotFoundException`
+- Status: `PASSED` (2026-10-09, Asia/Taipei)
+- Fresh Codex Cloud task restored JDK 17.0.18, Android SDK 34 and Build Tools 34.0.0.
+  Tool paths and writable Gradle / Android user directories were verified.
+- The Linux wrapper lacked execute permission; `gradlew` now has Git mode `100755`.
+- Reproduced the baseline: 56 tests, 43 passed, 13 failed. No `ClassNotFoundException`.
+- Root causes and fixes:
+  - 12 tests called Android stub `Uri.parse` / `Uri.encode`. The five affected test classes
+    now use Robolectric 4.12.2 with SDK 34 and no application manifest.
+  - Robolectric's default download lock targeted a read-only user home. Gradle resolves
+    `android-all-instrumented:14-robolectric-10818077-i6`; Robolectric loads it offline
+    from the Gradle cache, using the existing Gradle proxy / TLS configuration for downloads.
+  - The ASS fixture used doubled backslashes in a Kotlin raw string. It now contains
+    standard ASS single-backslash style / newline sequences. The expected output is unchanged.
+- `./gradlew testDebugUnitTest --no-daemon --console=plain`: 56 passed,
+  0 failed, 0 errors, 0 skipped. All existing assertions remain in place.
+- `./gradlew assembleDebug --no-daemon --console=plain`: passed before and after the fixes.
+- Gradle 9.0-milestone-1, AGP 8.2.0 and Kotlin 1.9.22 remain unchanged.
 
 ### Instrumentation execution
 
 - Status: `BLOCKED`
 - Blocking reason:
   - No available device / emulator in this environment
-  - Unit test runtime issue should be understood before expanding instrumentation coverage
+  - JVM tests now pass; device / emulator validation remains separate.
 
 ## 4. Next Test Gaps
 

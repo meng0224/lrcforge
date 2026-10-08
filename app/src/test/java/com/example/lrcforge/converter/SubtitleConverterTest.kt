@@ -25,7 +25,7 @@ class SubtitleConverterTest {
     fun assDialogueTextStillCleansStyleMarkup() {
         val content = """
             [Events]
-            Dialogue: 0,0:00:01.23,0:00:03.45,Default,,0,0,0,,{\\i1}Hello{\\i0}\\Nworld
+            Dialogue: 0,0:00:01.23,0:00:03.45,Default,,0,0,0,,{\i1}Hello{\i0}\Nworld
         """.trimIndent()
 
         assertEquals("[00:01.23]Hello world", converter.convertAssToLrc(content))
