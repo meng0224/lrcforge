@@ -44,4 +44,16 @@
     <string name="item_file_format_placeholder">SRT</string>
     <string name="item_output_placeholder">輸出:</string>
     <string name="item_error_placeholder">錯誤資訊</string>
+    <string name="conversion_parse_failed">轉換失敗：%1$s 第 %2$d 行，%3$s</string>
+    <string name="conversion_read_failed">無法讀取字幕檔案</string>
+    <string name="conversion_invalid_utf8">字幕包含無效的 UTF-8 編碼，請將檔案另存為 UTF-8 後重試</string>
+    <string name="parse_invalid_timestamp">時間格式或數值無效</string>
+    <string name="parse_invalid_time_range">結束時間必須晚於開始時間</string>
+    <string name="parse_invalid_cue">字幕缺少有效的時間行</string>
+    <string name="parse_invalid_ass_format">Format 必須包含唯一的 Start、End 與位於最後的 Text 欄位</string>
+    <string name="parse_invalid_ass_dialogue">Dialogue 欄位不完整</string>
+    <string name="parse_invalid_sync">SYNC 缺少有效的 Start 毫秒時間</string>
+    <string name="parse_missing_frame_rate">缺少 FPS，請在檔案首行提供影格率，例如 {1}{1}25.0</string>
+    <string name="parse_invalid_frame_rate">FPS 必須為正數，且只能在檔案開頭宣告一次</string>
+    <string name="parse_invalid_sub_entry">MicroDVD 字幕格式或影格範圍無效</string>
 </resources>

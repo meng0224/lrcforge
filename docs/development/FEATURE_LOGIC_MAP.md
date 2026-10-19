@@ -545,7 +545,8 @@
 - 只有 `PENDING` 與 `ERROR` 會進入 `isEligibleForConversion()`
 - `INVALID` 不會轉換
 - `SUCCESS` 也不會再次轉換
-- `convertToLrc()` 若發生例外會回 `null`
+- `convertToLrc()` 保留讀取例外；解析失敗拋出含格式、行號及原因的 `SubtitleParseException`。
+- `MainActivity` 將解析原因轉為繁體中文訊息、清空舊輸出，並以 `SubtitleConversion` 記錄失敗堆疊；不保存該檔部分內容。
 - `MainActivity` 進一步把 `null` 或空字串視為失敗
 - `smartNaming` 與 `timePrecision` 目前由 `AppSettings` 控制，但實際上 `SettingsManager.fromStoredValues()` 固定回傳 `true`
 
@@ -600,7 +601,7 @@
    - `sub` / `str -> convertSubToLrc`
 4. 每種 parser 會抽取起始時間與文字
 5. 文字會透過 `cleanText()` 或 `cleanAssText()` 去標記與壓縮空白
-6. 時間會透過 `formatTimeToLrc()` 或 `formatTimeFromMilliseconds()` 轉成 LRC 時間格式
+6. 起始時間統一換成毫秒，再透過 `formatTimeFromMilliseconds()` 以 `Locale.ROOT` 轉成 LRC 時間格式
 7. 回傳整份 LRC 字串給 `MainActivity`
 
 流程箭頭：
@@ -622,18 +623,21 @@
 
 - `ASS/SSA`
   - 會先找 `[Events]`
-  - 讀取 `Format:` 解析 `Text` 欄位 index
-  - 若沒有 `Format:`，使用 fallback index `9`
-  - `Dialogue:` 以 `limit = resolvedTextColumnIndex + 1` split，避免含逗號文本被截斷
+  - 讀取 `Format:` 定位 Start、End、Text；欄位不可重複，Text 必須在最後。
+  - 沒有 `Format:` 時沿用標準 Start=1、End=2、Text=9；無效宣告不回退。
+  - `Dialogue:` 以 Text 欄位位置限制切分次數，保留文字內逗號；無效時間／欄位會讓該檔轉換失敗。
+  - 清除樣式，將 `\N`、`\n`、`\h` 轉為空白，保留一般文字中的角括號。
 - `VTT/SRT`
-  - 找含 `"-->"` 的時間行
-  - 收集後續直到空白行的文本並合併
+  - 以空白行分段，辨識字幕序號／識別碼與時間行；VTT 支援省略小時並略過標頭、NOTE、STYLE、REGION 區塊。
+  - 分別解析箭頭兩側，驗證分鐘／秒數與起訖順序，不以結束時間代替起始時間。
+  - 收集字幕文本、清除標記後解碼文字實體一次，再合併空白；錯誤項目保留原始行號。
 - `SMI`
-  - 以 `<SYNC Start=...>` 當時間點
+  - 依 SYNC 標籤切段，Start 為毫秒，可為零或帶引號；不依賴標籤及文字的換行方式。
+  - 忽略註解與 HEAD，保持原始行號；無效 Start 會報錯。
 - `SUB/STR`
-  - 目前以 `\{start\}\{end\}text` 規則解析
-  - 依程式行為直接把第一個數字當毫秒值處理
-  - 是否完全符合所有 `.sub/.str` 變體格式，靜態閱讀下無法完全確認
+  - 僅處理文字型 MicroDVD；首筆非空行需宣告正數 FPS，例如 `{1}{1}25.0` 或 `{0}{}23.976`。
+  - 將影格數除以 FPS 換算毫秒，略過 FPS 宣告，將 `|` 轉為空白。
+  - 缺少、無效或重複 FPS，以及無效字幕行都會報錯，不保存部分結果。
 - `timePrecision = false` 時會把小數統一輸出為 `.00`
 
 #### 3.7.6 資料流與狀態流
@@ -1099,16 +1103,29 @@
 
 因此不能把此專案描述為「已實際使用 ViewBinding」。
 
-### 6.5 `.sub/.str` 解析規則的泛用性未完全確認
+### 6.5 轉換修復驗證與邊界（2026-10-20）
 
-- `convertSubToLrc()` 目前把 `\{數字\}\{數字\}文字` 的第一個數字直接當成毫秒處理
-- 測試案例也以此行為為準
-- 但不同來源的 `.sub/.str` 檔可能存在 frame-based 或其他變體
+- 範圍：已確認的 8 類解析／診斷問題；採局部修復，保留格式入口與儲存流程。新增共用時間驗證，不更換 UI 架構或套件。
+- 授權：使用者在審查後要求「進行修復」；於 `codex/fix-subtitle-conversion` 處理。工作前 main 乾淨，基準為 `cf84b6b`。
+- 工作規範：`code-quality-workflow` 路由，A0 v1.1.0，library snapshot `2026-08-18`。範圍上限為 10 個檔案／1,500 行變更，含測試與文件；未涉及刪除使用者資料、發布或推送。
+- 修復前原有 8 項轉換測試通過；補齊回歸案例並更正 SUB 的毫秒假設後，28 項中 21 項失敗。小數 FPS 案例依 `240 / 23.976` 校正為 10.01 秒。
+- 修復後 `testDebugUnitTest` 的 83 項測試全數通過，含 31 項轉換／讀檔測試，以及解析失敗時清空舊結果、顯示行號並記錄日誌的 Robolectric 畫面測試。
+- `assembleDebug`、`assembleDebugAndroidTest`、`lintDebug` 通過；lint 為 0 errors／47 warnings。
+- 尚未驗證：無連線裝置，新增的 instrumentation 錯誤畫面測試僅完成編譯，未執行；尚未取得真人驗收或外部播放器播放結果。
+- 格式邊界：輸入仍為 UTF-8；`.sub/.str` 僅支援有 FPS 的 MicroDVD，不支援 VobSub 等其他變體。SMI 未新增語言軌選擇；本次沒有處理全套字幕視覺效果或逐字時間。
+- 後續驗證入口：連線裝置後執行 `connectedDebugAndroidTest`，並以實際字幕在播放器確認輸出。若修復造成回歸，僅撤回本次分支上的相關變更；不重設其他使用者工作。
 
-因此對 `.sub/.str` 的支援應描述為：
+#### 轉換邏輯複查後的第二輪修復（2026-10-20）
 
-- 目前程式已實作一種明確的解析規則
-- 是否涵蓋所有常見變體，僅靠靜態閱讀無法完全確認
+- 使用者複查後要求「修復」，涵蓋複查提出的 8 項問題。沿用目前分支、A0 與 10 檔／1,500 行累計範圍；只修改轉換器、錯誤文案、測試與必要文件，不更換依賴、UI 或儲存流程。
+- 分階段修復格式判斷與文字處理；完整解析器重寫列為後續評估，本輪不執行。先前 83 項單元測試通過，但臨時的 9 個邊界案例失敗；正式加入回歸與邊界測試後再修正。
+- VTT 依位置辨認標頭，保留同名識別碼，依解析狀態區分 STYLE／REGION；缺少字幕分隔空行明確報錯。SRT 一般正文中的箭頭仍保留。
+- MicroDVD 已讀到 FPS 後，省略結束格數的第 0／1 格字幕按正文處理；正文保留角括號及實體文字，不套用 HTML 清理。
+- SMI 逐一辨認完整標籤，再按引號邊界讀屬性；拒絕重複 Start、損壞屬性與未閉合標籤，保留原始行號。其他屬性內的 start=／SYNC 不影響時間。
+- ASS/SSA 的損壞事件不再靜默跳過；明確列出不輸出歌詞的事件種類。允許起訖相同且清理後無文字的空白事件，非空零時長或倒置時間仍失敗。
+- UTF-8 改為嚴格解碼，損壞或截斷時顯示中文錯誤並保留 cause；Robolectric 驗證 App 清除舊結果、標示失敗且日誌保留原因。
+- 最終 `testDebugUnitTest`：101 項全部通過（48 項轉換／讀檔、5 項畫面、48 項其他邏輯）；本輪新增 18 項。`assembleDebug`、`assembleDebugAndroidTest`、`lintDebug` 通過，lint 為 0 errors／47 warnings。
+- 驗證限制：adb 沒有連線裝置，instrumentation 仍僅建置成功；無實機／外部播放器或真人驗收。Gradle 使用已確認的 JAVA_HOME 與 ANDROID_HOME；local.properties 的舊 SDK 路徑警告仍存在，未修改該檔。
 
 ### 6.6 沒有遠端資料與資料庫流程
 

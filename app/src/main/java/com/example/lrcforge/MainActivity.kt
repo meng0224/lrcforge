@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.DocumentsContract
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -21,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lrcforge.adapter.SubtitleFileAdapter
 import com.example.lrcforge.converter.SubtitleConverter
+import com.example.lrcforge.converter.SubtitleParseException
 import com.example.lrcforge.model.AppSettings
 import com.example.lrcforge.model.FileStatus
 import com.example.lrcforge.model.SubtitleFile
@@ -42,6 +44,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.chip.Chip
 import com.google.android.material.materialswitch.MaterialSwitch
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.util.ArrayDeque
@@ -516,8 +519,10 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 try {
+                    Log.i("SubtitleConversion", "Started file=${file.fileName}")
                     val lrcContent = converter.convertToLrc(file.uri, file.fileName)
                     if (lrcContent?.isNotEmpty() == true) {
+                        Log.i("SubtitleConversion", "Parsed file=${file.fileName} lines=${lrcContent.lineSequence().count()}")
                         val outputFileName = FileNameHelper.smartNaming(file.fileName, settings.smartNaming)
                         withContext(Dispatchers.Main) {
                             files[fileIndex].status = FileStatus.SUCCESS
@@ -530,10 +535,19 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         throw IllegalStateException("解析錯誤或內容為空")
                     }
+                } catch (e: CancellationException) {
+                    throw e
                 } catch (e: Exception) {
+                    Log.e("SubtitleConversion", "Failed file=${file.fileName}", e)
                     withContext(Dispatchers.Main) {
                         files[fileIndex].status = FileStatus.ERROR
-                        files[fileIndex].errorMessage = "轉換失敗: ${e.message}"
+                        files[fileIndex].lrcContent = null
+                        files[fileIndex].outputFileName = null
+                        files[fileIndex].errorMessage = if (e is SubtitleParseException) {
+                            getString(R.string.conversion_parse_failed, e.format, e.lineNumber, getString(e.reason.messageResId))
+                        } else {
+                            "轉換失敗: ${e.message}"
+                        }
                         adapter.updateFile(fileIndex, files[fileIndex])
                         updateUiState()
                     }

@@ -45,7 +45,7 @@
 - `JAVA_HOME` 指向本機可用的 Java 17 以上版本。舊記錄的 `C:\Program Files\Android\Android Studio\jbr` 在 2026-10-20 驗證環境中不存在，勿直接沿用。
 - `GRADLE_USER_HOME=D:\06_開發與工具\Git\lrcapp\.gradle-user`
 - 建置前明確設定 `JAVA_HOME` 與有效的 Android SDK 路徑，避免使用錯誤或已移除的環境。
-- 最近狀態（2026-10-20）：`assembleDebug`、`assembleDebugAndroidTest`、`testDebugUnitTest` 及 `lintDebug` 通過；59 項測試全數通過，lint 為 0 errors / 51 warnings。沒有連線裝置，尚未執行 instrumentation tests。
+- 最近狀態（2026-10-20）：轉換複查修復後 `assembleDebug`、`assembleDebugAndroidTest`、`testDebugUnitTest` 及 `lintDebug` 通過；101 項測試全數通過，lint 為 0 errors / 47 warnings。沒有連線裝置，尚未執行 instrumentation tests。
 
 ## 建置指令
 
@@ -147,6 +147,10 @@
 
 ## 錯誤處理
 
+- 字幕解析失敗使用 `SubtitleParseException` 保留格式、原始行號與原因；由 `MainActivity` 顯示資源字串並記錄 `SubtitleConversion` 日誌。不得以 `null` 或跳過壞字幕隱藏解析錯誤。
+- UTF-8 解碼必須回報損壞／截斷位元組，不可使用替代字元掩蓋錯誤；包裝讀檔例外時保留原始 cause。SMI 標籤與屬性需遵守引號邊界，MicroDVD 正文不可套用 HTML 清理。
+- `.sub/.str` 的 MicroDVD 影格時間必須依檔案開頭的 FPS 換算，缺少 FPS 就報錯；不得預設影格率或把影格數當成毫秒。
+- ASS/SSA 有 `Format:` 時必須依宣告定位 Start、End、Text；只有沒有宣告時沿用標準欄位順序。LRC 時間固定使用 `Locale.ROOT`，以 ASCII 數字輸出。
 - 對檔案 I/O、解析、SAF、權限流程要採安全失敗策略。
 - 在 app 能恢復或能回報使用者的邊界層攔截例外。
 - 可行時優先捕捉具體例外型別；除非是在保護 framework / 檔案存取邊界，否則避免過度寬泛的 catch。
