@@ -865,7 +865,7 @@ class MainActivity : AppCompatActivity() {
                     textColorRes = R.color.status_pending_onContainer
                 )
                 tvOutputDir.text = getString(R.string.storage_mode_default)
-                tvOutputDirHint.text = "/storage/emulated/0/Download"
+                tvOutputDirHint.text = StorageHelper.getDownloadDirectory(this).absolutePath
                 layoutCustomOutputActions.visibility = View.VISIBLE
                 btnSelectOutputDir.text = "選擇目錄"
             }
@@ -910,14 +910,14 @@ class MainActivity : AppCompatActivity() {
     private fun updateFileListSection() {
         val eligibleCount = files.count { it.status.isEligibleForConversion() }
         tvFileListTitle.text = if (files.isEmpty()) {
-            "文件列表"
+            getString(R.string.file_list_title)
         } else {
-            "文件列表 (${files.size})"
+            getString(R.string.file_list_count, files.size)
         }
         tvFileSummary.text = if (files.isEmpty()) {
             ""
         } else {
-            "$eligibleCount 個可轉換"
+            getString(R.string.file_summary, eligibleCount)
         }
 
         emptyStateContainer.visibility = if (files.isEmpty()) View.VISIBLE else View.GONE
@@ -940,9 +940,10 @@ class MainActivity : AppCompatActivity() {
     private fun updateActionButtons() {
         val eligibleCount = files.count { it.status.isEligibleForConversion() }
         btnClearFileList.isEnabled = FileListUiPolicy.canClearFileList(files.size)
+        btnConvert.setIconResource(if (files.isEmpty()) R.drawable.ic_add else R.drawable.ic_convert)
 
         if (isConversionInProgress) {
-            btnConvert.text = "轉換中..."
+            btnConvert.text = getString(R.string.convert_in_progress)
             btnConvert.isEnabled = false
             secondaryActionsRow.visibility = View.GONE
             return
@@ -950,21 +951,21 @@ class MainActivity : AppCompatActivity() {
 
         btnConvert.isEnabled = true
         if (files.isEmpty()) {
-            btnConvert.text = if (settings.recursiveImportEnabled) "選擇資料夾" else "選擇文件"
+            btnConvert.setText(if (settings.recursiveImportEnabled) R.string.select_folder else R.string.select_files)
             secondaryActionsRow.visibility = View.GONE
             return
         }
 
         btnConvert.text = if (eligibleCount > 0) {
-            "開始轉換 ($eligibleCount)"
+            getString(R.string.convert_count, eligibleCount)
         } else {
-            "沒有可轉換的文件"
+            getString(R.string.convert_none)
         }
         btnConvert.isEnabled = eligibleCount > 0
         btnSelectFiles.text = when {
-            settings.recursiveImportEnabled -> "新增資料夾"
-            settings.outputToSourceDirectory -> "新增文件"
-            else -> "重新選擇"
+            settings.recursiveImportEnabled -> getString(R.string.add_folder)
+            settings.outputToSourceDirectory -> getString(R.string.add_files)
+            else -> getString(R.string.reselect_files)
         }
         secondaryActionsRow.visibility = View.VISIBLE
     }

@@ -11,7 +11,9 @@
 - 平台：使用 Kotlin 與 Gradle Groovy DSL 的 Android App。
 - App module：`app`。
 - 套件根路徑：`com.example.lrcforge`。
-- UI 技術：Android Views + Material Components + RecyclerView。
+- UI 技術：Android Views + Material Components 1.14.0 + RecyclerView，使用 `Theme.Material3Expressive.DayNight.NoActionBar`。
+- UI 結構：字幕匯入／列表在前、輸出設定在後，底部固定主要操作。保留官方 Expressive 按鈕形狀變化及狀態配色，不以固定圓角或單色覆蓋。
+- 建置基準：AGP 8.7.3、compileSdk 35；minSdk 24、targetSdk 34 維持原設定。
 - 非同步工作：Kotlin coroutines 搭配 `lifecycleScope`。
 - 測試：JUnit4 單元測試與 AndroidX instrumentation tests。
 
@@ -38,12 +40,12 @@
 ## 環境注意事項
 
 - Gradle wrapper 目前設定使用 `gradle-9.0-milestone-1-bin.zip`。
-- 命令列建置建議使用 Android Studio 內建 JBR。
+- 命令列建置需要可用的 Java 17 以上版本及 Android SDK 35，可使用 Android Studio 內建 JBR。
 - Windows 環境下，專案文件另外建議設定：
-- `JAVA_HOME=C:\Program Files\Android\Android Studio\jbr`
+- `JAVA_HOME` 指向本機可用的 Java 17 以上版本。舊記錄的 `C:\Program Files\Android\Android Studio\jbr` 在 2026-10-20 驗證環境中不存在，勿直接沿用。
 - `GRADLE_USER_HOME=D:\06_開發與工具\Git\lrcapp\.gradle-user`
-- 在此 workspace 中，未設定 `JAVA_HOME` 時可能會落到 Java 8，導致 Android Gradle Plugin 無法執行。
-- 最近狀態：`assembleDebug` 與 `compileDebugUnitTestKotlin` 可通過；`testDebugUnitTest` 目前卡在 JUnit runtime 對所有測試類別的 `ClassNotFoundException`。
+- 建置前明確設定 `JAVA_HOME` 與有效的 Android SDK 路徑，避免使用錯誤或已移除的環境。
+- 最近狀態（2026-10-20）：`assembleDebug`、`assembleDebugAndroidTest`、`testDebugUnitTest` 及 `lintDebug` 通過；59 項測試全數通過，lint 為 0 errors / 51 warnings。沒有連線裝置，尚未執行 instrumentation tests。
 
 ## 建置指令
 

@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:attr/colorBackground"
-    tools:context=".MainActivity">
-
+    tools:context=".MainActivity"
+    android:orientation="vertical">
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/mainScroll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false">
-
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:layout_weight="1"
+        android:fillViewport="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="20dp"
-            android:paddingTop="18dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="32dp">
-
+            android:paddingStart="@dimen/screen_gutter"
+            android:paddingTop="8dp"
+            android:paddingEnd="@dimen/screen_gutter"
+            android:paddingBottom="24dp">
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 style="@style/Widget.LrcForge.Toolbar"
@@ -29,126 +31,235 @@
                 android:layout_height="0dp"
                 android:minHeight="0dp"
                 android:visibility="gone" />
-
             <LinearLayout
                 android:id="@+id/headerCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingStart="4dp"
-                android:paddingTop="10dp"
+                android:paddingTop="16dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="26dp">
-
+                android:paddingBottom="24dp">
                 <TextView
-                    android:id="@+id/tvHeaderTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/main_toolbar_title"
-                    android:textAppearance="@style/TextAppearance.LrcForge.DisplayLarge" />
-
+                    android:text="@string/app_name"
+                    android:textAppearance="@style/TextAppearance.LrcForge.LabelLarge"
+                    android:textColor="?attr/colorPrimary" />
                 <TextView
                     android:id="@+id/tvHeroSubtitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/main_toolbar_subtitle"
+                    android:text="@string/expressive_subtitle"
                     android:textAppearance="@style/TextAppearance.LrcForge.BodyLarge" />
             </LinearLayout>
-
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/formatCard"
-                style="@style/Widget.LrcForge.Card.Feature"
+                android:id="@+id/actionCard"
+                style="@style/Widget.LrcForge.Card.Action"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="26dp">
-
+                    android:padding="20dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
-
                             <TextView
+                                android:id="@+id/tvFileListTitle"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="@string/format_explainer_title"
-                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="@string/supported_formats"
-                                android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
+                                android:text="@string/file_list_title"
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
+                                android:accessibilityHeading="true" />
                         </LinearLayout>
-
                         <TextView
+                            android:id="@+id/tvFileSummary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/empty_state_icon_background"
-                            android:paddingStart="18dp"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="18dp"
-                            android:paddingBottom="10dp"
-                            android:text="@string/empty_state_badge"
-                            android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
-                            android:textColor="?attr/colorOnPrimaryContainer" />
+                            android:text=""
+                            android:textAppearance="@style/TextAppearance.LrcForge.LabelMedium"
+                            android:accessibilityLiveRegion="polite" />
                     </LinearLayout>
-
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/authBannerCard"
+                        style="@style/Widget.LrcForge.Card.Warning"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+                            <TextView
+                                android:id="@+id/tvAuthBannerTitle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@string/auth_banner_title"
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
+                                android:textColor="@color/warning_onContainer" />
+                            <TextView
+                                android:id="@+id/tvAuthBannerMessage"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/auth_banner_message"
+                                android:textAppearance="@style/TextAppearance.LrcForge.BodyMedium"
+                                android:textColor="@color/warning_onContainer" />
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnAuthorizeSourceDir"
+                                style="@style/Widget.LrcForge.Button.Filled"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="@string/authorize_directory" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/progressCard"
+                        style="@style/Widget.LrcForge.Card.Emphasis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="20dp">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical">
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/progress_section_title"
+                                        android:textAppearance="@style/TextAppearance.LrcForge.PanelHeadline" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="4dp"
+                                        android:text="@string/progress_placeholder"
+                                        android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel"
+                                        android:textColor="?attr/colorOnPrimaryContainer" />
+                                </LinearLayout>
+                                <TextView
+                                    android:id="@+id/tvProgressCount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0/0"
+                                    android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
+                                    android:textColor="?attr/colorOnPrimaryContainer" />
+                            </LinearLayout>
+                            <com.google.android.material.progressindicator.LinearProgressIndicator
+                                android:id="@+id/progressBar"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:max="100"
+                                android:progress="0"
+                                app:indicatorColor="?attr/colorPrimary"
+                                app:trackColor="@color/md_theme_light_surfaceContainerHigh"
+                                app:trackThickness="8dp"
+                                app:trackCornerRadius="4dp"
+                                android:contentDescription="@string/progress_section_title" />
+                            <TextView
+                                android:id="@+id/tvProgress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:text="@string/progress_placeholder"
+                                android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
+                                android:textColor="?attr/colorOnPrimaryContainer"
+                                android:accessibilityLiveRegion="polite" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                    <LinearLayout
+                        android:id="@+id/emptyStateContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/empty_state_title"
+                            android:textAppearance="@style/TextAppearance.LrcForge.BodyMedium" />
+                        <TextView
+                            android:id="@+id/tvEmptyFormats"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/supported_formats"
+                            android:textAppearance="@style/TextAppearance.LrcForge.BodySmall" />
+                    </LinearLayout>
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/fileListCard"
+                        style="@style/Widget.LrcForge.Card.Subsection"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:visibility="gone">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clipToPadding="false"
+                            android:nestedScrollingEnabled="false"
+                            android:paddingStart="0dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="0dp"
+                            android:paddingBottom="0dp" />
+                    </com.google.android.material.card.MaterialCardView>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/storageCard"
                 style="@style/Widget.LrcForge.Card.Section"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="18dp">
-
+                android:layout_marginTop="16dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="26dp">
-
+                    android:padding="20dp">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
-
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/storage_section_title"
-                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="@string/main_toolbar_subtitle"
-                                android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel" />
+                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
+                                android:accessibilityHeading="true" />
                         </LinearLayout>
-
                         <com.google.android.material.chip.Chip
                             android:id="@+id/tvStorageModeChip"
                             style="@style/Widget.LrcForge.Chip.Status"
@@ -159,30 +270,26 @@
                             app:chipBackgroundColor="@color/status_pending_container"
                             app:chipStrokeWidth="0dp" />
                     </LinearLayout>
-
                     <TextView
                         android:id="@+id/tvOutputDir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="16dp"
                         android:text="@string/storage_mode_default"
-                        android:textAppearance="@style/TextAppearance.LrcForge.HeadlineSmall" />
-
+                        android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
                     <TextView
                         android:id="@+id/tvOutputDirHint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="/storage/emulated/0/Download"
+                        android:text="@string/storage_default_hint"
                         android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
-
                     <LinearLayout
                         android:id="@+id/layoutCustomOutputActions"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginTop="12dp"
                         android:orientation="horizontal">
-
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnSelectOutputDir"
                             style="@style/Widget.LrcForge.Button.SecondaryTonal"
@@ -191,7 +298,6 @@
                             android:layout_marginEnd="10dp"
                             android:layout_weight="1"
                             android:text="@string/select_directory" />
-
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnClearOutputDir"
                             style="@style/Widget.LrcForge.Button.InlineText"
@@ -199,27 +305,24 @@
                             android:layout_height="wrap_content"
                             android:text="@string/clear_directory" />
                     </LinearLayout>
-
                     <LinearLayout
                         android:id="@+id/sourceOutputPanel"
                         style="@style/Widget.LrcForge.Panel.Row"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="24dp">
-
+                        android:layout_marginTop="16dp">
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
-
                             <TextView
+                                android:id="@+id/sourceOutputLabel"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/storage_mode_source"
                                 android:textAppearance="@style/TextAppearance.LrcForge.TitleSmall"
                                 android:textColor="?attr/colorOnSurface" />
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -227,34 +330,32 @@
                                 android:text="@string/storage_source_hint"
                                 android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
                         </LinearLayout>
-
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchOutputToSourceDirectory"
                             style="@style/Widget.LrcForge.Switch"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@string/storage_mode_source"
+                            android:layout_marginStart="12dp" />
                     </LinearLayout>
-
                     <LinearLayout
                         android:id="@+id/recursiveImportPanel"
                         style="@style/Widget.LrcForge.Panel.Row"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp">
-
+                        android:layout_marginTop="4dp">
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical">
-
                             <TextView
+                                android:id="@+id/recursiveImportLabel"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/recursive_import_title"
                                 android:textAppearance="@style/TextAppearance.LrcForge.TitleSmall"
                                 android:textColor="?attr/colorOnSurface" />
-
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -262,276 +363,59 @@
                                 android:text="@string/recursive_import_hint"
                                 android:textAppearance="@style/TextAppearance.LrcForge.SupportingText" />
                         </LinearLayout>
-
                         <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchRecursiveImport"
                             style="@style/Widget.LrcForge.Switch"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                    </LinearLayout>
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/actionCard"
-                style="@style/Widget.LrcForge.Card.Action"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="26dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <LinearLayout
-                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvFileListTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/file_list_title"
-                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:text="@string/main_toolbar_subtitle"
-                                android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tvFileSummary"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=""
-                            android:textAppearance="@style/TextAppearance.LrcForge.LabelMedium" />
-                    </LinearLayout>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/authBannerCard"
-                        style="@style/Widget.LrcForge.Card.Warning"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="20dp">
-
-                            <TextView
-                                android:id="@+id/tvAuthBannerTitle"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/auth_banner_title"
-                                android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
-                                android:textColor="@color/warning_onContainer" />
-
-                            <TextView
-                                android:id="@+id/tvAuthBannerMessage"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/auth_banner_message"
-                                android:textAppearance="@style/TextAppearance.LrcForge.BodyMedium"
-                                android:textColor="@color/warning_onContainer" />
-
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnAuthorizeSourceDir"
-                                style="@style/Widget.LrcForge.Button.Filled"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:text="@string/authorize_directory" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/progressCard"
-                        style="@style/Widget.LrcForge.Card.Emphasis"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:visibility="gone">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:padding="20dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:text="@string/progress_section_title"
-                                        android:textAppearance="@style/TextAppearance.LrcForge.PanelHeadline" />
-
-                                    <TextView
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginTop="4dp"
-                                        android:text="@string/progress_placeholder"
-                                        android:textAppearance="@style/TextAppearance.LrcForge.MetaLabel"
-                                        android:textColor="?attr/colorOnPrimaryContainer" />
-                                </LinearLayout>
-
-                                <TextView
-                                    android:id="@+id/tvProgressCount"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0/0"
-                                    android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
-                                    android:textColor="?attr/colorOnPrimaryContainer" />
-                            </LinearLayout>
-
-                            <com.google.android.material.progressindicator.LinearProgressIndicator
-                                android:id="@+id/progressBar"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:max="100"
-                                android:progress="0"
-                                app:indicatorColor="?attr/colorPrimary"
-                                app:trackColor="@color/md_theme_light_surfaceContainerHigh" />
-
-                            <TextView
-                                android:id="@+id/tvProgress"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="12dp"
-                                android:text="@string/progress_placeholder"
-                                android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
-                                android:textColor="?attr/colorOnPrimaryContainer" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <LinearLayout
-                        android:id="@+id/emptyStateContainer"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/bg_empty_state_panel"
-                        android:gravity="center_horizontal"
-                        android:orientation="vertical"
-                        android:paddingStart="24dp"
-                        android:paddingTop="32dp"
-                        android:paddingEnd="24dp"
-                        android:paddingBottom="32dp">
-
-                        <TextView
-                            android:id="@+id/tvEmptyStateBadge"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/empty_state_icon_background"
-                            android:paddingStart="18dp"
-                            android:paddingTop="10dp"
-                            android:paddingEnd="18dp"
-                            android:paddingBottom="10dp"
-                            android:text="@string/empty_state_badge"
-                            android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium"
-                            android:textColor="?attr/colorOnPrimaryContainer" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:gravity="center"
-                            android:text="@string/empty_state_title"
-                            android:textAppearance="@style/TextAppearance.LrcForge.PanelHeadline" />
-
-                        <TextView
-                            android:id="@+id/tvEmptyFormats"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:gravity="center"
-                            android:text="@string/supported_formats"
-                            android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
-                            android:textColor="?attr/colorOnPrimaryContainer" />
-                    </LinearLayout>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/fileListCard"
-                        style="@style/Widget.LrcForge.Card.Subsection"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:visibility="gone">
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:clipToPadding="false"
-                            android:nestedScrollingEnabled="false"
-                            android:paddingStart="12dp"
-                            android:paddingTop="12dp"
-                            android:paddingEnd="12dp"
-                            android:paddingBottom="0dp" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnConvert"
-                        style="@style/Widget.LrcForge.Button.PrimaryCtaFilled"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="22dp"
-                        android:text="@string/select_files" />
-
-                    <LinearLayout
-                        android:id="@+id/secondaryActionsRow"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnSelectFiles"
-                            style="@style/Widget.LrcForge.Button.SecondaryTonal"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="10dp"
-                            android:layout_weight="1"
-                            android:text="@string/reselect_files" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnClearFileList"
-                            style="@style/Widget.LrcForge.Button.InlineText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/clear_file_list" />
+                            android:contentDescription="@string/recursive_import_title"
+                            android:layout_marginStart="12dp" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:id="@+id/actionDock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="?attr/colorSurface"
+        android:paddingStart="@dimen/screen_gutter"
+        android:paddingEnd="@dimen/screen_gutter"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnConvert"
+            style="@style/Widget.LrcForge.Button.PrimaryCtaFilled"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:text="@string/select_files"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart" />
+        <LinearLayout
+            android:id="@+id/secondaryActionsRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSelectFiles"
+                style="@style/Widget.LrcForge.Button.SecondaryTonal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:text="@string/reselect_files" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnClearFileList"
+                style="@style/Widget.LrcForge.Button.InlineText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clear_file_list" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

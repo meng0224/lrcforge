@@ -5,7 +5,7 @@
     style="@style/Widget.LrcForge.Card.ListItem"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp">
+    android:layout_marginBottom="4dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,7 +55,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="14dp"
-            android:maxLines="2"
             android:text="@string/item_file_name_placeholder"
             android:textAppearance="@style/TextAppearance.LrcForge.TitleMedium" />
 
@@ -80,7 +79,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:maxLines="2"
             android:text="@string/item_output_placeholder"
             android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
             android:visibility="gone" />
@@ -90,7 +88,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:maxLines="3"
             android:text="@string/item_error_placeholder"
             android:textAppearance="@style/TextAppearance.LrcForge.SupportingText"
             android:textColor="?attr/colorError"

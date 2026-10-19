@@ -145,7 +145,6 @@ class SubtitleFileAdapter(
         holder.cardView.strokeWidth = 0
         holder.tvFileName.setTextColor(ContextCompat.getColor(context, fileNameColorRes))
         holder.tvFileMeta.setTextColor(ContextCompat.getColor(context, metaColorRes))
-        holder.tvFileFormat.setTextColor(ContextCompat.getColor(context, chipTextColorRes))
 
         if (outputText != null) {
             holder.tvOutputFileName.text = outputText
@@ -169,7 +168,7 @@ class SubtitleFileAdapter(
     private fun bindFormatChip(label: TextView, format: String) {
         val context = label.context
         label.text = format
-        val background = (label.background?.mutate() as? GradientDrawable) ?: GradientDrawable()
+        val background = GradientDrawable()
         background.cornerRadius = context.resources.displayMetrics.density * 18
         background.setColor(ContextCompat.getColor(context, R.color.md_theme_light_primaryContainer))
         label.background = background

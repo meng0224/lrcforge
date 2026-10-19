@@ -2,6 +2,15 @@
 
 LrcForge 是一個 Android 字幕轉換工具，可將常見字幕格式轉成 LRC 歌詞格式。
 
+## 介面
+
+- 使用官方 Material 3 Expressive Views 主題與按鈕，支援淺色及深色模式。
+- 首頁先顯示字幕匯入／轉換列表，再顯示輸出位置與匯入選項。
+- 「加入字幕／開始轉換」固定在畫面底部，捲動設定或長列表時仍可操作。
+- 檔案狀態保留文字與配色，錯誤訊息、輸出檔名可完整換行顯示。
+- 建置需要 Java 17 以上、Android SDK 35 與 Build Tools 34.0.0；Material Components 1.14.0、AGP 8.7.3。Gradle wrapper 沿用專案版本。
+- 設計依據與驗證記錄見 [MATERIAL3_EXPRESSIVE.md](./docs/design/MATERIAL3_EXPRESSIVE.md)。
+
 ## 開發文件索引
 
 - [DEVELOPMENT_ROADMAP.md](./docs/development/DEVELOPMENT_ROADMAP.md) - 主開發路線圖與目前狀態
